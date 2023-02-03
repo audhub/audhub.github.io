@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>ProjectQ</title>
+        <meta name="Author" content="Mikel Edwin">
+        <meta name="Partner" content="REJ Music Charts">
+	    <meta name="Keywords" content="Charts, Upcoming, Artist, Streaming, Downloads">
+        <meta name="Description" content="All songs on TuneThis™ ranked by total streams">
+	    <meta name="robots" content="follow">
+	    <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="icon" href="Icon.svg">
+        <script src="/database.js"></script>
+        <link rel="stylesheet" href="all.css">
+        <link rel="stylesheet" href="small.css">
+        <link rel="preload" href="/svg/pause.svg" as="image">
+        <link rel="preload" href="/svg/charts.svg" as="image">
+        <link rel="preload" href="/svg/download.svg" as="image">
+        <link rel="preload" href="/svg/loop.svg" as="image">
+        <link rel="preload" href="/svg/mute.svg" as="image">
+        <link rel="preload" href="/svg/next.svg" as="image">
+        <link rel="preload" href="/svg/play.svg" as="image">
+        <link rel="preload" href="/svg/prev.svg" as="image">
+        <link rel="preload" href="/svg/queue -playlist.svg" as="image">
+        <link rel="preload" href="/svg/settings.svg" as="image">
+        <link rel="preload" href="/svg/shuffle.svg" as="image">
+        <link rel="preload" href="/svg/telegram-icon.svg" as="image">
+        <link rel="preload" href="/svg/unmute.svg" as="image">
+        <link rel="stylesheet" href="big-light.css">
+        <script src="script.js"></script>
+    </head>
+    <body onload="pageLoad()">
+        <img src="/Icon.svg" style="display: none" id="hide">
+        <div id="container 1">
+            <img src="menu.svg" onclick="update.revealMenu()">
+            <label>
+                <input placeholder="Search" onfocus="media.search.focus()" onblur="media.search.blur()" type="search">
+                <img style="transform: scaleX(-1)" src="search.svg">
+            </label>
+            <div class="mobile-hide sub">
+                <div id="slide 1" style="margin-top: 10px">
+                    <button on class="tab"><img src="/svg/unmute.svg">Recommended</button>
+                    <button class="tab"><img src="/svg/charts.svg">Charts</button>
+                    <button class="tab">Recent Plays</button>
+                    <button class="tab"><img src="/svg/queue -playlist.svg">Now Playing</button>
+                    <button class="tab"><img src="/svg/telegram-icon.svg">Contact</button>
+                </div>
+                <div id="slide 2">
+                    <button class="tab">Playlists</button>
+                    <button class="tab">Artists</button>
+                    <button class="tab">Albums</button>
+                    <button class="tab">All</button>
+                </div>
+                <div class="bottom">
+                    <button class="tab" style="border-width: 1px; border-style: solid; border-color:  #444; border-left-style: none; border-right-style: none;"><img src="/svg/settings.svg"> Settings</button>
+                </div>
+            </div>
+              
+        </div>
+        <div id="container 2">
+            <div id="topscreen"></div>
+            <div id="display" tabindex="1"></div>
+            <div id="update"></div>
+            <div id="playhide"></div>
+        </div>
+        <div id="container 3">
+            <img id="playicon" height="100%">
+            <div id="meta">
+                <span class="metsong"></span>
+                <span class="metartist"></span>
+            </div>
+            <div id="control">
+                <img class="loop" onclick="media.loop()" src="/svg/loop.svg">
+                <img class="back" onclick="media.back()" src="/svg/prev.svg">
+                <img class="state" onclick="media.pp()" src="/svg/play.svg">
+                <img class="next" onclick="media.next()" src="/svg/next.svg">
+                <img class="shuffle" onclick="media.shuffle()" src="/svg/shuffle.svg">
+                <input type="range">
+            </div>
+        </div>
+        <div id="contextmenu">
+            <button class="ctx">Play</button>
+            <button class="ctx">Play next</button>
+            <button class="ctx">Add to <img src="/svg/arrow.svg" style="transform: translateY(30%);float:right"></button>
+            <button class="ctx">Show Album</button>
+            <button class="ctx">Download</button>
+            <button class="ctx">Properties</button>
+        </div>
+        <div id="playcontext">
+        </div>
+        <div id="createplaylist">
+            <div class="cover" style="position: fixed; background-color:#000;opacity:0.7;z-index:200;top:0%;left:0%;width:100%;height:100%;" onclick="user.cancelplaylist()"></div>
+            <div class="create">
+                <input type="text" onchange="user.createplaylist()" placeholder="Name your playlist">
+                <button onclick="user.createplaylist()">Create Playlist</button>
+                <button onclick="user.cancelplaylist()">Cancel</button>
+            </div>
+        </div>
+        <input id="track" type="range" onchange="media.seek()">
+        <img id="download" onclick="media.download(audio.src)" src="/svg/download.svg">
+        <style id="style"></style>
+        <a id="link" download></a>
+        <audio autoplay onplay="media.isPlay()" onerror="media.isPause()" ondurationchange="media.change()" onended="media.end()" onpause="media.isPause()"></audio>
+
+    </body>
+</html>

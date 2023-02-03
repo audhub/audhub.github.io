@@ -1,0 +1,91 @@
+@media only screen and (orientation: landscape) {
+    div[id~="container"] {
+        display: inline-block;
+        margin: 0px;
+        position: fixed;
+        border-width: 0;
+        border-style: none;
+    }
+    div[id="container 1"] {
+        width: 18.5%;
+        left: 0%;
+        padding-right: 1%;
+        padding-left: 0.5%;
+        top: 0%;
+        height: 85%;
+    }
+    div[id="container 2"] {
+        width: 80%;
+        right: 0%;
+        overflow: auto;
+        top: 0%;
+        height: 85%;
+        scrollbar-width: thin;
+    }
+    div[id="container 2"]::-webkit-scrollbar {
+        width: 5px;
+    }
+    div[id="container 3"] {
+        width: 100%;
+        left: 0%;
+        display: flex;
+        align-items: center;
+        bottom: 0%;
+        height: 15%;
+    }
+    .item>* {
+        display: inline-block;
+        width: 30%;
+        overflow: hidden;
+        font-size: medium;
+        padding-left: 1.5%;
+        padding-right: 1.5%;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    #meta {
+        display: inline-block;
+        width: 27%;
+        overflow: hidden;
+        font-size: larger;
+        padding-left: 1%;
+        line-height: 190%;
+    }
+    #control {
+        display: inline-block;
+        line-height: 350%;
+        width: 30%;
+        text-align: center;
+        letter-spacing: 30px;
+    }
+    #control>img {
+        display: inline-block;
+        height: 40px;
+    }
+    #meta>* {
+        white-space: nowrap;
+    }
+    #contextmenu, #playcontext {
+        width: 7%;
+    }
+    #createplaylist>.create {
+        top: 23%;
+        height: 50%;
+        left: 30%;
+        width: 40%;
+    }
+    #createplaylist>.create>* {
+        margin: 2%;
+    }
+    .playtab {
+        height: 180px;
+        width: 15%;
+        padding: 1%;
+        text-align: center;
+        margin: 1%;
+        display: inline-block;
+    }
+    .playname {
+        text-transform: uppercase;
+    }
+}
