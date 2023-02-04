@@ -241,7 +241,7 @@ const media = {
         else {
             media.played.push(xxx);
             switch(location.hostname.toLowerCase){
-                case "tunethis.w3spaces.com":
+                case "audhub.github.io":
                     tracker = new URL('https://l.linklyhq.com/l/1fiKQ');
                     tracker.searchParams.set(media.refine(xxx).k.name, media.refine(xxx).x.name);
                     fetch(tracker).catch(error => {});    
@@ -580,7 +580,7 @@ const user = {
         },
         in: function() {
             switch(location.hostname){
-                case "tunethis.w3spaces.com":
+                case "audhub.github.io":
                     visit = new URL('https://l.linklyhq.com/l/1fiKY');
                     visit.searchParams.set("User", user.check.id());
                     fetch(visit).then(response => {}).catch(error => {})
