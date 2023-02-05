@@ -104,7 +104,7 @@
         <input id="track" type="range" onchange="media.seek()">
         <img id="download" onclick="media.download(audio.src)" src="/svg/download.svg">
         <style id="style"></style>
-        <a id="link" download></a>
+        <a id="link" target="_blank" download></a>
         <audio autoplay onplay="media.isPlay()" onerror="media.isPause()" ondurationchange="media.change()" onended="media.end()" onpause="media.isPause()"></audio>
 
     </body>
