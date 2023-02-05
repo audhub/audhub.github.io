@@ -13,6 +13,7 @@ function pageLoad() {
     menu.addEventListener("click", screentool.menuclick)
     topscreen = document.getElementById("topscreen");
     updateElement = document.getElementById("update");
+    search = document.querySelector("input[type=\"search\"]");
     playhide = document.getElementById("playhide");
     playlistcreator = document.getElementById("createplaylist");
     ctxmenu = document.getElementById("contextmenu");
@@ -229,6 +230,42 @@ window.onresize = () => {
     track.style.width = range.getBoundingClientRect().width + 'px';
 }
 const media = {
+    searching: function() {
+        searched = search.value.toLowerCase();
+        searchArray = thislist.sort();
+        result = [];
+        for(i=0;searchArray[i];i++){
+            kSearch = media.refine(searchArray[i]).k;
+            xSearch = media.refine(searchArray[i]).x;
+            is = false;
+            if(xSearch.album && xSearch.album.toLowerCase().includes(searched)){
+                is = true;
+            }
+            if(xSearch.feat && xSearch.feat.toLowerCase().includes(searched)){
+                is = true;
+            }
+            if(kSearch.name.toLowerCase().includes(searched) || xSearch.name.toLowerCase().includes(searched) || xSearch.name.toLowerCase().replace(/[.]/g, '').includes(searched) || kSearch.name.toLowerCase().replace(/[.]/g, '').includes(searched) || kSearch.name.toLowerCase().replace(/[.]/g, '').replace(/[&]/g, 'and').includes(searched) || kSearch.name.toLowerCase().replace(/[&]/g, 'and').includes(searched) || xSearch.name.toLowerCase().replace(/[.]/g, '').replace(/[&]/g, 'and').includes(searched) || xSearch.name.toLowerCase().replace(/[&]/g, 'and').includes(searched)){
+                is = true;
+            }
+            if(is){
+                result.push(searchArray[i]);
+            }
+        }
+        if(result.length == 0){
+            switch(detectDeviceType()){
+                case "desktop":
+                    display.innerHTML = '<p style="font-family: centaur; font-weight: bold; opacity: 0.7; display: block; font-size: xx-large; text-align: center"> Sorry, your requested search "'+ search.value +'" doesn\'t exist <br><br> 🤔 </p>';
+                    break;
+                case "mobile":
+                    display.innerHTML = '<p style="font-family: centaur; font-weight: bold; opacity: 0.7; display: block; font-size: xx-large; text-align: center"> Sorry, your requested search "'+ search.value +'" doesn\'t exist <br><br> 🤔 </p>';
+                    break;
+            }
+            toolbar.state('No Results');
+        } else {
+            update.setlist(result);
+            toolbar.state('Search Results');
+        }
+    },
     queue: function() {
         for(;queue.length != 0;queue.pop()){}
         for(i=0;display.children[i];i++){
@@ -236,6 +273,7 @@ const media = {
         }
     },
     played: [],
+    downloaded: [],
     rec: function() {
         if(media.played.includes(xxx)){}
         else {
@@ -254,8 +292,21 @@ const media = {
         user.recent.unshift(xxx);
         user.store.recent();
     },
+    recdownload: function(src, xox){
+        if(media.downloaded.includes(xox)){}
+        else {
+            media.downloaded.push(xox);
+            switch(location.hostname.toLowerCase()){
+                case "audhub.github.io":
+                    tracker = new URL('https://l.linklyhq.com/l/1fiKa');
+                    tracker.set(media.refine(xox).k.name, media.refine(xxx).x.name);
+                    fetch(tracker).catch(error => {});
+                    break;
+            }
+        }
+        media.download(src);
+    },
     refine: function(cc) {
-        redd = {};
         c = cc.split('.');
         rk = database[c.shift()];
         rx = rk[c.pop()];
@@ -324,21 +375,47 @@ const media = {
     isPause: function() {
         state.src = media.img.play.off;
     },
+    extractplaynext: function() {
+        media.playnext.shift();
+        if(media.playnext.length == 0){
+            media.playnext = false;
+        }
+        t1 = queue.indexOf(xxx);
+        queue.splice(t1,1);
+        if(queue[t1]){
+            media.ext = t1;
+        }
+    },
+    ext: false,
     next: function() {
         if(media.checkplaynext()){
-            xxx = media.extractplaynext();
-            media.play(xxx);
+            t0 = queue.indexOf(xxx);
+            xxx = queue[t0 + 1];
+            k = media.refine(xxx).k;
+            x = media.refine(xxx).x;
+            media.src(xxx, k, x);
+            media.extractplaynext();
         } else {
             switch(media.checkState().shuffle){
                 case true:
-                    media.process(media.shuffle_song());
+                    media.play(media.shuffle_song());
                     break;
                 default:
-                    if(t.nextElementSibling){
-                        t.nextElementSibling.click();
+                    if(media.ext){
+                        xxx = queue[media.ext];
+                        media.ext = false;
                     } else {
-                        display.firstElementChild.click();
+                        t0 = queue.indexOf(xxx);
+                        if(queue[t0 + 1]){
+                            xxx = queue[t0 + 1];
+                        } else {
+                            xxx = queue[0];
+                        }
                     }
+                    k = media.refine(xxx).k;
+                    x = media.refine(xxx).x;
+                    media.src(xxx, k, x);
+                    return xxx;
                     break;
             }
         }
@@ -346,14 +423,18 @@ const media = {
     back: function() {
         switch(media.checkState().shuffle){
             case true:
-                media.process(media.shuffle_song());
+                media.play(media.shuffle_song());
                 break;
             default:
-                if(t.previousElementSibling){
-                    t.previousElementSibling.click();
+                t0 = queue.indexOf(xxx);
+                if(queue[t0 - 1]){
+                    xxx = queue[t0 - 1];
                 } else {
-                    display.lastElementChild.click();
+                    xxx = queue[queue.length - 1];
                 }
+                k = media.refine(xxx).k;
+                x = media.refine(xxx).x;
+                media.src(xxx, k, x);
                 break;
         }
     },
@@ -375,7 +456,7 @@ const media = {
             default:
                 switch(media.checkState().shuffle) {
                     case true:
-                        media.process(media.shuffle_song());
+                        media.play(media.shuffle_song());
                         break;
                     default:
                         media.next();
@@ -424,24 +505,6 @@ const media = {
         } else {
             return false;
         }
-    },
-    extractplaynext: function() {
-        ans = media.playnext.shift();
-        if(media.playnext.length == 0){
-            media.playnext = false;
-        }
-        return ans;
-    },
-    process: function(cx) {
-        if(media.checkplaynext()){
-            xxx = media.extractplaynext();
-        } else {
-            xxx = cx;
-            t = screentool.findT.frKey(xxx);
-        }
-        k = media.refine(xxx).k;
-        x = media.refine(xxx).x;
-        media.src(xxx, k, x);
     },
     playnext: false,
     search: {
@@ -549,7 +612,7 @@ document.onkeydown = (keyDownEvent) => {
                     if(keyDownEvent.shiftKey){
                         media.download(x.img);
                     } else {
-                        media.download(audio.src);
+                        media.recdownload(audio.src, xxx);
                     }
                     break;    
             }
@@ -687,7 +750,7 @@ const user = {
 }
 const screentool = {
     displayClicked: function(e) {
-        if(playctx.style.display == "block" || ctxmenu.style.display == "block"){}
+        if(playctx.style.display == "block" || ctxmenu.style.display == "block" || menu.style.display == "block"){}
         else {
             xxx = screentool.findT.click(e.target).xax;
             t = screentool.findT.click(e.target).xtx;
@@ -764,6 +827,8 @@ const screentool = {
                     media.playnext = [];
                     media.playnext.unshift(ctxObj.xxx);
                 }
+                t0 = queue.indexOf(xxx);
+                queue.splice(t0 + 1,0,ctxObj.xxx)
                 screentool.hidecontext();
                 break;
             case "add to":
@@ -776,7 +841,7 @@ const screentool = {
                 break;
             case "download":
                 screentool.hidecontext();
-                media.download(ctxObj.url);
+                media.recdownload(ctxObj.url, ctxObj.xxx);
                 break;
         }
     },
@@ -804,6 +869,11 @@ const screentool = {
     hideall: function() {
         screentool.hidecontext();
         screentool.hideplay();
+        if(detectDeviceType() == "mobile"){
+            if(menu.style.display == "block"){
+                menu.style.display = "none"
+            }
+        }
     },
     menuclick: function(e) {
         switch(e.target.innerText.toLowerCase()){
