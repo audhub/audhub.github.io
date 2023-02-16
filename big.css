@@ -88,4 +88,9 @@
     .playname {
         text-transform: uppercase;
     }
+    div.bottom {
+        position: absolute;
+        bottom: 0;
+        width: 92.5%;
+    }
 }
