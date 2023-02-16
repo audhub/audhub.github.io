@@ -1,10 +1,13 @@
+html {
+    --gradient: linear-gradient(to bottom, #5152ff, #0077ff);
+}
 div[id="container 1"] {
     background-color: #2B2B2B;
     z-index: 100;
 }
 div[id="container 3"] {
     z-index:101;
-    background-image: linear-gradient(to bottom, #5152ff, #0077ff);
+    background-image: var(--gradient);
 }
 div[id="container 3"]>* {
     display: inline-block;
@@ -62,11 +65,6 @@ button.tab {
 }
 button.tab:focus, button.tab:hover {
     background-color: #4B4B4B;
-}
-div.bottom {
-    position: absolute;
-    bottom: 0;
-    width: 92.5%;
 }
 div[id="slide 1"] { 
     border-bottom: 1px solid #444;
@@ -132,7 +130,6 @@ input[type="range"]:focus::-moz-range-thumb {
     height: 60%;
     width: 10%;
     margin-right: 1%;
-    display: none;
 }
 .tab {
     display: flex;
@@ -143,9 +140,8 @@ input[type="range"]:focus::-moz-range-thumb {
 }
 #track {
     position: fixed;
-    display: block;
-    opacity: 0.0;
-    z-index: 101;
+    opacity: 0.0; 
+    z-index: 300;
 }
 #download {
     position: fixed;
@@ -187,7 +183,7 @@ div[scheme="light"] {
     font-family: ui;
 }
 #contextmenu>button:hover, #contextmenu>button:focus, #playcontext>button:hover, #playcontext>button:focus {
-    background-image: linear-gradient(to bottom, #5152ff, #0077ff);
+    background-image:  var(--gradient);
 }
 #createplaylist>.create {
     position: fixed;
@@ -214,7 +210,7 @@ div[scheme="light"] {
     border-radius: 10px;
 }
 #createplaylist>.create>button {
-    background-image: linear-gradient(to bottom, #5152ff, #0077ff);
+    background-image:  var(--gradient);
     width: 60%;
 }
 #createplaylist>.create>input {
@@ -236,7 +232,7 @@ span[class="ref"] {
     text-align: center;
 }
 button[on]{
-    background-image: linear-gradient(to bottom, #5152ff, #0077ff);
+    background-image:  var(--gradient);
 }
 .playclass {
     display: inline-block;
