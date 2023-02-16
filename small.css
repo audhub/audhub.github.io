@@ -1,3 +1,4 @@
+@import url("/all.css");
 @media only screen and (orientation: portrait) {
     div[id~="container"] {
         display: block;
@@ -7,7 +8,6 @@
     }
     div[id="container 1"] {
         align-items: center;
-        height: 10%;
         left: 0%;
         top: 0%;
         width: 100%;
@@ -22,8 +22,8 @@
         width: 100%;
         left: 0%;
         position: fixed;
+        line-height: 170%;
         bottom: 0%;
-        height: 13%;
     }
     label {
         display: inline-block;
@@ -32,16 +32,6 @@
     }
     [class~="mobile-hide"]{
         display: none;       
-    }
-    div[class="mobile-hide sub"]{
-        position: fixed;
-        left: 0;
-        height: 77%;
-        top: 10%;
-        z-index:100;
-        width: 70%;
-        background-color: inherit;
-        overflow: hidden;
     }
     .artist {
         display: inline-block;
@@ -67,20 +57,22 @@
     }
     #meta {
         float: left;
-        line-height: 200%;
     }
     #control {
         float: right;
         text-align: center;
-        line-height: 250%;
-        transform: translateY(10%);
+        z-index: 209;
+        position: absolute;
+        padding-top: 1%;
+        height: 100%;
+        line-height: 200%;
+        right: 0%;
     }
     #meta, #control {
-        display: inline-block;
+        display: block;
         width: 48%;
         padding-left: 1%;
         padding-right: 1%;
-        height: 100%;
         overflow: hidden;
     }
     #control>img {
@@ -118,6 +110,6 @@
         font-size: larger;
         border-bottom-left-radius: 30px;
         border-bottom-right-radius: 30px;
-        background-image: linear-gradient(to bottom, #5152ff, #0077ff);
+        background-image: var(--gradient);
     }
 }
