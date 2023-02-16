@@ -97,7 +97,7 @@ const customcontextmenu = (e) => {
 function ex_play() {
     w.click();
 }
-function OnLoad() {
+window.onload= () => {
     isDown = {};
     isPlay = {};
     isReveal = false;
