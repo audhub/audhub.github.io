@@ -76,13 +76,11 @@ let database = {
     },
     "Da Riddim": {
         name: 'Da Riddim',
-        audiomack_url: 'https://audiomack.com/dariddimm',
         louder: {
             name: 'Louder',
             img: 'https://assets.audiomack.com/dariddimm/fa74e4eab9af46c32202c2eb50857312bb9a6621b332ad0ee20f07c21c888400.jpeg?width=240&height=240&max=true',
             feat: 'Lithoxx, Aajaay, Cruizy B & Prince Cee',
             url: 'https://dl.dropboxusercontent.com/s/xsr7iqkd5xnau9c/Da%20Riddim%20-%20Louder%20%28feat.%20Lithoxx%2C%20Aajaay%2C%20Cruizy%20B%20%26%20Prince%20Cee%29.m4a?dl=0',
-            audiomack: 'https://audiomack.com/dariddimm/song/louder',
         }
     },
     "Deszy Dsn": {
@@ -99,7 +97,6 @@ let database = {
             img: 'https://assets.audiomack.com/heisemmylob/e5117f2082ee94d33365e6fe70408134c22ad60f91b8d25a69195ffc391f33dd.jpeg?type=song&width=165&height=165&max=true',
             feat: 'Critic',
             url: 'https://dl.dropboxusercontent.com/s/bjrofoiq67sy48a/Emmy%20Lob%20-%20Squad%20Style%20%28feat.%20Critic%29.m4a?dl=0',
-            audiomack: 'https://audiomack.com/heisemmylob/song/squad-style',
         },
         name: 'Emmy Lob'
     },
@@ -115,12 +112,10 @@ let database = {
     },
     "Emojie": {
         name: 'Emojie',
-        audiomack_url: 'https://audiomack.com/emojiemusik/',
         "Loading": {
             name: 'Loading',
             img: 'https://assets.audiomack.com/emojiemusik/d026cfae9938ae21c66f6ea0379cd9e16c10f418de4f082b2fecdf5155029b83.jpeg?type=song&width=280&height=280&max=true',
             url: 'https://dl.dropboxusercontent.com/s/j95a0n6q3xo5e61/Emojie%20-%20Loading.m4a?dl=0',
-            audiomack: 'https://audiomack.com/emojiemusik/song/loading',
         }
     },
     "Enny West": {
@@ -188,9 +183,7 @@ let database = {
     },
     "Kamikaze": {
         name: 'Kamikaze',
-        audiomack_url: 'https://audiomack.com/kamikaze-92/',
         "Open": {
-            audiomack: 'https://audiomack.com/kamikaze-92/song/open',
             name: 'Open',
             img: 'https://assets.audiomack.com/kamikaze-92/573d9411656dd053ba0bbda0bdc0fcb859225bb2fed35aebadab9a766a6a50f6.jpeg?type=song&width=280&height=280&max=true',
             album: 'Audioconvert',
@@ -469,7 +462,6 @@ let database = {
             name: 'Hating On Me',
             url: 'https://dl.dropboxusercontent.com/s/oh634fz14pwrmv4/Timmy%20Tammy%20-%20Hating%20On%20Me%20%28feat.%20Wilfred%29.m4a?dl=0',
             album: 'Game Minded',
-            audiomack: 'https://audiomack.com/timmy-tammy-1/song/hating-on-me-1',
             img: 'https://assets.audiomack.com/timmy-tammy-1/c9af4d1328ce91968d7227521f4df17cba9f5b00ebc08e2a1fc6fd8b09004504.png?type=song&width=165&height=165&max=true',
             feat: 'Wilfred',
         },
@@ -499,11 +491,9 @@ let database = {
     },
     "Wale Tunes": {
         name: 'Wale Tunes',
-        audiomack_url: 'https://audiomack.com/Waletunes',
         "Na God O": {
             name: 'Na God O',
             img: 'https://assets.audiomack.com/Waletunes/e4f2731ff6a2e458bc971ce3c7f0cf78f86be0129b2e9b2a1c4452c037dafabb.jpeg?type=song&width=280&height=280&max=true',
-            audiomack: 'https://audiomack.com/Waletunes/song/na-god-o-1',
             feat: 'Gold, ODV, Rhymes, Mubline, AG Blaze & Badmuswealthy',
             url: 'https://dl.dropboxusercontent.com/s/tdvm0sqyafkc0va/Wale%20Tunes%20-%20Na%20God%20O%20%28feat.%20Gold%2C%20ODV%2C%20Rhymes%2C%20Mubline%2C%20AG%20Blaze%20%26%20Badmuswealthy%29.m4a?dl=0',
         },
@@ -519,23 +509,19 @@ let database = {
     },
     "Yummy Cruise": {
         name: 'Yummy Cruise',
-        audiomack_url: 'https://audiomack.com/yummy-cruise',
         "On God": {
             name: 'On God',
             img: 'https://assets.audiomack.com/yummy-cruise/f0fc85bb4a770db6106716ef93502820baceaf732cca73d1ae932c0b0559144e.jpeg?width=165&height=165&max=true',
             album: 'On God Yummy Cruise',
-            audiomack: 'https://audiomack.com/yummy-cruise/song/on-god',
             url: 'https://dl.dropboxusercontent.com/s/r84rnvp98cs1rif/Yummy%20Cruise%20-%20On%20God.m4a?dl=0',
         },
     },
     "Yunik Lord": {
         name: 'Yunik Lord',
-        audiomack_url: 'https://audiomack.com/yunik-lord/',
         "Bad Girl": {
             name: 'Bad Girl',
             img: 'https://assets.audiomack.com/yunik-lord/8275e3e5c5fe55157359154a360b8cfb1e6f71aca07bbac49046763111ec3ee5.jpeg?width=165&height=165&max=true',
             url: 'https://dl.dropboxusercontent.com/s/dnn5wnioe5vobft/Yunik%20Lord%20-%20Bad%20Girl.m4a?dl=0',
-            audiomack: 'https://audiomack.com/yunik-lord/song/bad-girl'
         },
     }
 }
