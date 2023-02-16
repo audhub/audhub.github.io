@@ -40,9 +40,7 @@ function pageLoad() {
     metartist = document.querySelector(".metartist");
     range = document.querySelector('#control>input');
     track = document.getElementById("track");
-    track.style.top = range.getBoundingClientRect().top + 'px';
-    track.style.left = range.getBoundingClientRect().left + 'px';
-    track.style.width = range.getBoundingClientRect().width + 'px';
+    screentool.resize();
     if(detectDeviceType() == "desktop"){
         display.focus();     
     }
@@ -66,7 +64,7 @@ const update = {
         update.hideplay();
         display.style.display = "block";
         display.innerHTML = '';
-        for(n = 0; list[n]; n++){
+        for(n = 0;list[n]; n++){
             key = list[n].split('.');
             k = database[key.shift()];
             x = k[key.pop()];
@@ -120,16 +118,16 @@ const update = {
                 }
             }
         }
-        if(toolbar.isChart){
-            toolbar.isChart = false;
-        }
+        toolbar.isChart = false;
     },
     revealMenu: function() {
         if(detectDeviceType() == "mobile"){
             if(menu.style.display == "block"){
-                menu.style.display = "none"
+                menu.style.display = "none";
+                document.body.style.overflow = "auto";
             } else {
                 menu.style.display = "block";
+                document.body.style.overflow = "hidden";
             }
         }
     },
@@ -207,7 +205,6 @@ function random() {
             }
         }
     }
-    a2z = key2;
     let H = key2.length - 1;
     let numbers = [];
     for (let i = 0; i <= H; i++) {
@@ -225,9 +222,7 @@ function random() {
     }
 }
 window.onresize = () => {
-    track.style.top = range.getBoundingClientRect().top + 'px';
-    track.style.left = range.getBoundingClientRect().left + 'px';
-    track.style.width = range.getBoundingClientRect().width + 'px';
+    screentool.resize();
 }
 const media = {
     searching: function() {
@@ -446,6 +441,7 @@ const media = {
         range.value = 0;
         range.max = Math.round(audio.duration);
         track.max = Math.round(audio.duration);
+        screentool.resize();
     },
     end: function() {
         switch(media.checkState().loop){
@@ -749,6 +745,11 @@ const user = {
     }
 }
 const screentool = {
+    resize: function() {
+        track.style.top = range.getBoundingClientRect().top + 'px';
+        track.style.left = range.getBoundingClientRect().left + 'px';
+        track.style.width = range.getBoundingClientRect().width + 'px';
+    },
     displayClicked: function(e) {
         if(playctx.style.display == "block" || ctxmenu.style.display == "block" || menu.style.display == "block"){}
         else {
@@ -872,6 +873,7 @@ const screentool = {
         if(detectDeviceType() == "mobile"){
             if(menu.style.display == "block"){
                 menu.style.display = "none"
+                document.body.style.overflow = "auto";
             }
         }
     },
@@ -879,21 +881,21 @@ const screentool = {
         switch(e.target.innerText.toLowerCase()){
             case "recommended":
                 toolbar.state('My Music');
+                toolbar.isChart = false;
                 update.setlist(thislist);
                 break;
             case "playlists":
+                toolbar.isChart = false;
                 toolbar.state('Playlists');
                 update.playlist();
                 break;
             case "charts":
                 toolbar.isChart = true;
                 toolbar.state('Top 100');
-                update.setlist(toolbar.toArray(chartlist));
-                break;
-            case "queue":
-                update.queue();
+                update.setlist(toolbar.toArray(chart));
                 break;
             case "recent plays":
+                toolbar.isChart = false;
                 toolbar.state('Recent Plays');
                 update.setlist(user.recent);
                 break;
@@ -901,10 +903,12 @@ const screentool = {
                 update.contact();
                 break;
             case "artists":
+                toolbar.isChart = false;
                 toolbar.state('Artist');
                 update.artist.list();
                 break;
             case "albums":
+                toolbar.isChart = false;
                 toolbar.state('Albums');
                 update.album.list();
                 break;
@@ -912,11 +916,13 @@ const screentool = {
                 update.settings();
                 break;
             case "now playing":
+                toolbar.isChart = false;
                 toolbar.state('Now Playing');
                 update.setlist(queue);
             case "all":
+                toolbar.isChart = false;
                 toolbar.state('A-Z');
-                update.setlist(thislist.sort());
+                update.setlist(toolbar.sort());
         }
         update.buttoncss(e.target);
         switch(detectDeviceType()){
@@ -924,12 +930,27 @@ const screentool = {
                 update.revealMenu();
         }
     },
+    playlistclick: function(e){
+        t = e.target;
+        switch(e.target.tagName.toLowerCase()){
+            case "playtab":
+                txt = e.target.lastElementChild.innerHTML;
+                break;
+            case "img":
+                txt = e.target.nextElementSibling.innerHTML;
+                break;
+            case "span":
+                txt = e.target.innerHTML;
+        }
+        update.setlist(user.playlist[txt].content);
+        toolbar.state('Playlist: '+txt);
+    }
 }
 const toolbar = {
     toArray: function(cc) {
         myArray = [];
         for(i=1;cc[i];i++){
-            myArray.push(chartlist[i]);
+            myArray.push(cc[i]);
         }
         return myArray;
     },
@@ -937,7 +958,16 @@ const toolbar = {
     state: function(cc){
         topscreen.innerHTML = cc;
     },
-    playlistclick: function(e){
-        console.log(screentool.findT.click(e.target));
+    sort: function() {
+        a2z = []
+        for(let key in thislist){
+            a2z.push(thislist[key].split('.').reverse().join('.'));
+        }
+        a2z = a2z.sort();
+        final = [];
+        for(let key in a2z){
+            final.push(a2z[key].split('.').reverse().join('.'));
+        }
+        return final;
     }
 }
