@@ -2,7 +2,7 @@
 <html lang="en-us">
     <head>
         <meta charset="utf-8">
-        <title>AubHub</title>
+        <title>AubHub | Music Streaming and Downloads</title>
         <meta name="Author" content="Mikel Edwin">
         <meta name="Partner" content="REJ Music Charts">
 	    <meta name="Keywords" content="Charts, Upcoming, Artist, Streaming, Downloads">
@@ -16,39 +16,40 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="icon" href="favicon.png">
         <script src="/database.js"></script>
-        <link rel="stylesheet" href="all.css">
-        <link rel="stylesheet" href="small.css">
+        <script src="/chart.js"></script>
+        <script>if(window.localhostname != "audhub.github.io"){chart = chartlist;}</script>
+        <link rel="stylesheet" href="/all.css">
+        <link rel="stylesheet" href="/small.css">
         <link rel="preload" href="/svg/pause.svg" as="image">
-        <link rel="preload" href="/svg/charts.svg" as="image">
         <link rel="preload" href="/svg/download.svg" as="image">
         <link rel="preload" href="/svg/loop.svg" as="image">
-        <link rel="preload" href="/svg/mute.svg" as="image">
         <link rel="preload" href="/svg/next.svg" as="image">
         <link rel="preload" href="/svg/play.svg" as="image">
         <link rel="preload" href="/svg/prev.svg" as="image">
-        <link rel="preload" href="/svg/queue -playlist.svg" as="image">
-        <link rel="preload" href="/svg/settings.svg" as="image">
         <link rel="preload" href="/svg/shuffle.svg" as="image">
-        <link rel="preload" href="/svg/telegram-icon.svg" as="image">
-        <link rel="preload" href="/svg/unmute.svg" as="image">
-        <link rel="stylesheet" href="big.css">
-        <script src="script.js"></script>
+        <link rel="stylesheet" href="/big.css">
+        <script src="/script.js"></script>
+        <meta name="og:title" content="AubHub | Music Streaming and Downloads">
+        <meta name="og:type" content="Music">
+        <meta name="og:url" content="https://audhub.github.io/">
+        <meta name="og:image" content="/favicon.png">
+        <meta name="og:description" content="Stream and Download songs from your favorite Upcoming artists">
+        <meta name="og:site_name" content="AudHub">
+        <meta name="og:locale" content="en_NG">
     </head>
     <body onload="pageLoad()">
-        <img src="favicon.png" style="display: none" id="hide">
         <div id="container 1">
             <img src="menu.svg" onclick="update.revealMenu()">
             <label>
-                <input placeholder="Search" onkeyup="media.searching()" onfocus="media.search.focus()" onblur="media.search.blur()" type="search">
-                <img style="transform: scaleX(-1)" src="search.svg">
+                <input placeholder="Search" onkeyup="media.searching()" onfocus="media.search.focus()" onblur="media.search.blur()" type="search"  accept="image/*">
+                <img style="transform: scaleX(-1)" src="/search.svg">
             </label>
             <div class="mobile-hide sub">
                 <div id="slide 1" style="margin-top: 10px">
-                    <button on class="tab"><img src="/svg/unmute.svg">Recommended</button>
-                    <button class="tab"><img src="/svg/charts.svg">Charts</button>
+                    <button on class="tab">Recommended</button>
+                    <button class="tab">Charts</button>
                     <button class="tab">Recent Plays</button>
-                    <button class="tab"><img src="/svg/queue -playlist.svg">Now Playing</button>
-                    <button class="tab"><img src="/svg/telegram-icon.svg">Contact</button>
+                    <button class="tab">Now Playing</button>
                 </div>
                 <div id="slide 2">
                     <button class="tab">Playlists</button>
@@ -57,7 +58,7 @@
                     <button class="tab">All</button>
                 </div>
                 <div class="bottom">
-                    <button class="tab" style="border-width: 1px; border-style: solid; border-color:  #444; border-left-style: none; border-right-style: none;"><img src="/svg/settings.svg"> Settings</button>
+                    <button class="tab" style="border-width: 1px; border-style: solid; border-color:  #444; border-left-style: none; border-right-style: none;">Settings</button>
                 </div>
             </div>
               
