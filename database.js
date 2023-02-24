@@ -350,7 +350,7 @@ let database = {
         },
     },
     "MEC DECIMAL": {
-        name: 'MEC DECMIAL',
+        name: 'MEC DECIMAL',
         "Colour Rage": {
             name: "Colour Rage",
             img: "https://assets.audiomack.com/mec-decimal/c6a2276cdd793079e9ea8b86b79d66aa5903f2935971b68bc5152469e756555f.jpeg?type=album&width=280&height=280&max=true",
