@@ -1,4 +1,4 @@
-@import url("/all.css");
+@import url("/big.css");
 @media only screen and (orientation: portrait) {
     div[id~="container"] {
         display: block;
@@ -111,5 +111,9 @@
         border-bottom-left-radius: 30px;
         border-bottom-right-radius: 30px;
         background-image: var(--gradient);
+    }
+    #preview {
+        opacity: 0.5;
+        filter: blur(1px);
     }
 }
