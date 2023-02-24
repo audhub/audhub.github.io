@@ -7,7 +7,6 @@ div[id="container 1"] {
 }
 div[id="container 3"] {
     z-index:101;
-    background-image: var(--gradient);
 }
 div[id="container 3"]>* {
     display: inline-block;
@@ -218,7 +217,7 @@ div[scheme="light"] {
 }
 span[class="ref"] {
     display: inline-block;
-    width: 0.5%;
+    width: 1.5%;
 }
 .item {
     white-space: nowrap;
@@ -230,6 +229,10 @@ span[class="ref"] {
     background-color: black;
     padding-bottom: 1%;
     text-align: center;
+    background-image: linear-gradient(red, blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 button[on]{
     background-image:  var(--gradient);
@@ -255,4 +258,23 @@ button[on]{
 }
 .playtab {
     overflow: hidden;
+}
+.item>* {
+    text-overflow: ellipsis;
+}
+#meta {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#preview {
+    bottom: 0%;
+    display: block;
+    filter: blur(20px);
+    position: fixed;
+    z-index: 0;
+    opacity: 0.5;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    background-position: top;
 }
