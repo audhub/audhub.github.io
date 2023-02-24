@@ -6,9 +6,9 @@ function detectDeviceType() {
     }
     return deviceType;
 }
-function pageLoad() {
-    const xxx = '';
-    const tempX = ''; 
+window.onload = () => {
+    settings = document.getElementById("settings");
+    preview = document.getElementById("preview");
     menu = document.querySelector("div[class=\"mobile-hide sub\"]")
     menu.addEventListener("click", screentool.menuclick)
     topscreen = document.getElementById("topscreen");
@@ -49,8 +49,7 @@ function pageLoad() {
     update.setlist(thislist);
     update.claimfirst();
     user.check.in();
-    url = new URL(location.href).searchParams.get("tab").toLowerCase();
-    user.check.url(url);
+    user.check.url();
 }
 const update = {
     hideplay: function() {
@@ -118,7 +117,6 @@ const update = {
                 }
             }
         }
-        toolbar.isChart = false;
     },
     revealMenu: function() {
         if(detectDeviceType() == "mobile"){
@@ -150,28 +148,66 @@ const update = {
         }
         button.setAttribute("on", '');
     },
-    playlist: function() {
+    playlist: function(item) {
         update.hidelist();
         playhide.style.display = "block";
         updateElement.style.display = 'block';
         updateElement.innerHTML = '';
-        playObj = [];
-        for(let key in user.playlist){
-            first = user.playlist[key].content[0];
-            f1 = first.split('.').shift();
-            f2 = first.split('.').pop();
-            playtab = document.createElement("playtab");
-            updateElement.appendChild(playtab);
-            playtab.className = "playtab";  
-            playimg =  new Image();
-            playtab.appendChild(playimg);
-            playimg.src = database[f1][f2].img;
-            playimg.className = "playimg";
-            playname = document.createElement("span");
-            playtab.appendChild(playname);
-            playname.innerText = key;
-            playname.className = "playname";
-        }
+        if(toolbar.isArtist){
+            //Data is for artists
+            for(let key in item){
+                db = database[item[key]];
+                playtab = document.createElement("div")
+                updateElement.appendChild(playtab); 
+                playtab.className = "playtab";
+                playimg = new Image();
+                playtab.appendChild(playimg);
+                //Generate image from first song
+                for(let key in db){
+                    if(!X.includes(key)){
+                        playimg.src = db[key].img;
+                        break;
+                    }
+                }
+                playimg.className = "playimg";
+                playname = document.createElement("span");
+                playtab.appendChild(playname);
+                playname.innerText = db.name;
+                playname.className = "playname";
+            }
+        } else if(toolbar.isAlbum) {
+            //Do something if data is an album
+            //Data contains a name, artist name and image;
+            for(let key in item){
+                let entry = item[key];
+                let playtab = document.createElement("div");
+                updateElement.appendChild(playtab);
+                playtab.className = "playtab";  
+                let playimg =  new Image();
+                playtab.appendChild(playimg);
+                playimg.src = entry.img;
+                playimg.className = "playimg";
+                let playname = document.createElement("span");
+                playtab.appendChild(playname);
+                playname.innerText = entry.name;
+                playname.className = "playname";
+            }
+        } else {
+            //Data is for playlists
+            for(let key in item){
+                playtab = document.createElement("div");
+                updateElement.appendChild(playtab);
+                playtab.className = "playtab";  
+                playimg =  new Image();
+                playtab.appendChild(playimg);
+                playimg.src = database[item[key].content[0].split('.').shift()][item[key].content[0].split('.').pop()].img;
+                playimg.className = "playimg";
+                playname = document.createElement("span");
+                playtab.appendChild(playname);
+                playname.innerText = key;
+                playname.className = "playname";
+            }
+        } 
         playhide.innerHTML = '';
         for(i=0;updateElement.children[i];i++){
             cover = document.createElement("div");
@@ -182,8 +218,11 @@ const update = {
             cover.style.width = element.offsetWidth + "px";
             cover.style.height = element.offsetHeight + "px";
             cover.style.left = element.offsetLeft + "px";
-            cover.style.backgroundImage = 'url(\''+element.firstElementChild.src+'\')';
+            cover.style.backgroundImage = 'url(\''+media.img.cover+'\')';
         }
+    },
+    settings: function() {
+        settings.style.display == "block" ? settings.style.display = "none" : settings.style.display = "block"
     }
 }
 const thislist = [];
@@ -208,14 +247,14 @@ function random() {
     let H = key2.length - 1;
     let numbers = [];
     for (let i = 0; i <= H; i++) {
-    numbers.push(i);
+        numbers.push(i);
     }
     let selectedNumbers = [];
     while (numbers.length > 0) {
-    let randomIndex = Math.floor(Math.random() * numbers.length);
-    let randomNumber = numbers[randomIndex];
-    selectedNumbers.push(randomNumber);
-    numbers.splice(randomIndex, 1);
+        let randomIndex = Math.floor(Math.random() * numbers.length);
+        let randomNumber = numbers[randomIndex];
+        selectedNumbers.push(randomNumber);
+        numbers.splice(randomIndex, 1);
     }
     for(i=0;selectedNumbers.length != 0;i++){
         thislist.push(key2[selectedNumbers.shift()]);
@@ -273,12 +312,10 @@ const media = {
         if(media.played.includes(xxx)){}
         else {
             media.played.push(xxx);
-            switch(location.hostname.toLowerCase){
-                case "audhub.github.io":
-                    tracker = new URL('https://l.linklyhq.com/l/1fiKQ');
-                    tracker.searchParams.set(media.refine(xxx).k.name, media.refine(xxx).x.name);
-                    fetch(tracker).catch(error => {});    
-                    break;
+            if(location.hostname.toLowerCase() == "audhub.github.io"){
+                tracker = new URL('https://l.linklyhq.com/l/1fiKQ');
+                tracker.searchParams.set(media.refine(xxx).k.name, media.refine(xxx).x.name);
+                fetch(tracker).catch(error => {});    
             }
         }
         if(user.recent.includes(xxx)){
@@ -291,12 +328,10 @@ const media = {
         if(media.downloaded.includes(xox)){}
         else {
             media.downloaded.push(xox);
-            switch(location.hostname.toLowerCase()){
-                case "audhub.github.io":
-                    tracker = new URL('https://l.linklyhq.com/l/1fiKa');
-                    tracker.set(media.refine(xox).k.name, media.refine(xxx).x.name);
-                    fetch(tracker).catch(error => {});
-                    break;
+            if(location.hostname.toLowerCase() == "audhub.github.io"){
+                tracker = new URL('https://l.linklyhq.com/l/1fiKa');
+                tracker.set(media.refine(xox).k.name, media.refine(xxx).x.name);
+                fetch(tracker).catch(error => {});
             }
         }
         media.download(src);
@@ -324,43 +359,17 @@ const media = {
         loop: {
             off: '/svg/loop.svg',
             on: '/svg/loop-active.svg',
-        }
+        },
+        cover: database.DaBaby.TOES.img,
     },
     pp: function() {
-        switch(state.getAttribute("src")){
-            case media.img.play.on:
-                //Pause Media
-                audio.pause();
-                break;
-            case media.img.play.off:
-                //Play Media
-                audio.play();
-                break;
-        }
+        state.getAttribute("src") == media.img.play.on ? audio.pause() : audio.play()
     },
     shuffle: function() {
-        switch(shuffle.getAttribute("src")){
-            case media.img.shuffle.off:
-                //Shuffle is off
-                shuffle.src = media.img.shuffle.on;
-                break;
-            case media.img.shuffle.on:
-                //Shuffle is on
-                shuffle.src = media.img.shuffle.off;
-                break;
-        }
+        shuffle.src = shuffle.getAttribute("src") == media.img.shuffle.off ? media.img.shuffle.on : media.img.shuffle.off
     },
     loop: function() {
-        switch(loop.getAttribute("src")){
-            case media.img.loop.off:
-                //Loop is off
-                loop.src = media.img.loop.on;
-                break;
-            case media.img.loop.on:
-                //Loop is on
-                loop.src = media.img.loop.off;
-                break;
-        }
+        loop.src = loop.getAttribute("src") == media.img.loop.off ? media.img.loop.on : media.img.loop.off
     },
     isPlay: function() {
         state.src = media.img.play.on;
@@ -441,6 +450,7 @@ const media = {
         range.value = 0;
         range.max = Math.round(audio.duration);
         track.max = Math.round(audio.duration);
+        preview.style.backgroundImage = `url(${media.refine(xxx).x.img})`
         screentool.resize();
     },
     end: function() {
@@ -638,27 +648,53 @@ const user = {
             return localStorage.getItem("id");
         },
         in: function() {
-            switch(location.hostname){
-                case "audhub.github.io":
-                    visit = new URL('https://l.linklyhq.com/l/1fiKY');
-                    visit.searchParams.set("User", user.check.id());
-                    fetch(visit).then(response => {}).catch(error => {})
-                    break;
+            if (location.hostname.toLowerCase() == "audhub.github.io"){
+                visit = new URL('https://l.linklyhq.com/l/1fiKY');
+                visit.searchParams.set("User", user.check.id());
+                fetch(visit).then(response => {}).catch(error => {})
             }
             user.extract();
         },
-        url: function(url) {
-            switch(url){
-                case "playlists":
-                    document.getElementsByClassName("tab")[5].click();
-                    break;
-                case "playlist":
-                    document.getElementsByClassName("tab")[5].click();
-                    break;
-                case "recent":
-                    document.getElementsByClassName("tab")[2].click();
-                    break;
-            }
+        url: function() {
+            try{
+                url = new URL(location.href).searchParams.get("tab").toLowerCase();
+                switch(url){
+                    case "playlists":
+                        document.getElementsByClassName("tab")[4].click();
+                        break;
+                    case "playlist":
+                        document.getElementsByClassName("tab")[4].click();
+                        break;
+                    case "recent":
+                        document.getElementsByClassName("tab")[2].click();
+                        break;
+                    case "now playing":
+                        document.getElementsByClassName("tab")[3].click();
+                        break;
+                    case "albums":
+                        document.getElementsByClassName("tab")[6].click()
+                        break;
+                    case "album":
+                        document.getElementsByClassName("tab")[6].click()
+                        break;
+                    case "all":
+                        document.getElementsByClassName("tab")[7].click();
+                        break;
+                    case "artists":
+                        document.getElementsByClassName("tab")[5].click();
+                        break;
+                    case "artist":
+                        document.getElementsByClassName("tab")[5].click();
+                        break;
+                    case "chart":
+                        document.getElementsByClassName("tab")[1].click();
+                        break;
+                    case "charts":
+                        document.getElementsByClassName("tab")[1].click();
+                        break;
+                }
+                update.revealMenu()
+            }catch {}
         },
         recent: function() {
             if(localStorage.getItem("recent")){
@@ -696,6 +732,7 @@ const user = {
     },
     createplaylist: function() {
         listname = playlistcreator.children[1].children[0].value.toString();
+        console.log(listname)
         if(user.playlist[listname]){
             alert("Playlist already exists");
         } else {
@@ -705,6 +742,8 @@ const user = {
             }
             if(anum.includes(listname.charAt(0))){
                 alert("The first character of your playlist cannot be a number")
+            } else if(listname.includes(".")) {
+                alert("No dots allowed")
             } else {
                 user.playlist[listname] = {};
                 user.playlist[listname].content = [];
@@ -749,6 +788,9 @@ const screentool = {
         track.style.top = range.getBoundingClientRect().top + 'px';
         track.style.left = range.getBoundingClientRect().left + 'px';
         track.style.width = range.getBoundingClientRect().width + 'px';
+        preview.style.width = meta.parentElement.getBoundingClientRect().width + 'px';
+        preview.style.left = meta.parentElement.getBoundingClientRect().left + 'px';
+        preview.style.height = meta.parentElement.getBoundingClientRect().height + 'px';
     },
     displayClicked: function(e) {
         if(playctx.style.display == "block" || ctxmenu.style.display == "block" || menu.style.display == "block"){}
@@ -881,21 +923,20 @@ const screentool = {
         switch(e.target.innerText.toLowerCase()){
             case "recommended":
                 toolbar.state('My Music');
-                toolbar.isChart = false;
                 update.setlist(thislist);
                 break;
             case "playlists":
-                toolbar.isChart = false;
                 toolbar.state('Playlists');
-                update.playlist();
+                update.playlist(user.playlist);
+                toolbar.status = "playlist"
                 break;
             case "charts":
                 toolbar.isChart = true;
                 toolbar.state('Top 100');
                 update.setlist(toolbar.toArray(chart));
+                toolbar.isChart = false
                 break;
             case "recent plays":
-                toolbar.isChart = false;
                 toolbar.state('Recent Plays');
                 update.setlist(user.recent);
                 break;
@@ -903,32 +944,54 @@ const screentool = {
                 update.contact();
                 break;
             case "artists":
-                toolbar.isChart = false;
                 toolbar.state('Artist');
-                update.artist.list();
+                allArtist = []
+                for(let key in database){
+                    allArtist.push(key);
+                }
+                toolbar.isArtist = true
+                update.playlist(allArtist);
+                toolbar.isArtist = false
+                toolbar.status = "artist"
                 break;
             case "albums":
-                toolbar.isChart = false;
                 toolbar.state('Albums');
-                update.album.list();
+                //Create array showing all the albums in the database
+                allAlbums = {};
+                for(let key in database){
+                    db = database[key]
+                    //Artist is db
+                    for(let item2 in db) {
+                        //Artist data are item2
+                        if(!X.includes(item2)){
+                            item3 = db[item2];
+                            if(item3.album){
+                                allAlbums[item3.album] = {};
+                                allAlbums[item3.album].name = item3.album;
+                                allAlbums[item3.album].img = item3.img;
+                                allAlbums[item3.album].artist = key;
+                            }
+                        }
+                    }
+                }
+                toolbar.isAlbum = true;
+                toolbar.status = "album";
+                update.playlist(allAlbums);
+                toolbar.isAlbum = false;
                 break;
             case "settings":
                 update.settings();
                 break;
             case "now playing":
-                toolbar.isChart = false;
                 toolbar.state('Now Playing');
                 update.setlist(queue);
             case "all":
-                toolbar.isChart = false;
                 toolbar.state('A-Z');
                 update.setlist(toolbar.sort());
+                break;
         }
         update.buttoncss(e.target);
-        switch(detectDeviceType()){
-            case "mobile":
-                update.revealMenu();
-        }
+        if (detectDeviceType() == "mobile") update.revealMenu();
     },
     playlistclick: function(e){
         t = e.target;
@@ -942,8 +1005,39 @@ const screentool = {
             case "span":
                 txt = e.target.innerHTML;
         }
-        update.setlist(user.playlist[txt].content);
-        toolbar.state('Playlist: '+txt);
+        if(toolbar.status == "playlist"){
+            update.setlist(user.playlist[txt].content);
+            toolbar.state('Playlist: '+txt);
+        } else if (toolbar.status == "artist"){
+            txt = txt.replace(/&amp;/g, '&').replace(/[.]/g, '');
+            //generate array of songs from artist
+            db = database[txt];
+            dbs = [];
+            for(let items in db){
+                if(!X.includes[items]) dbs.push(txt + "." + items)
+            }
+            update.setlist(dbs);
+            toolbar.state(db.name + '\'s Songs')
+        } else if (toolbar.status == "album"){
+            //generate a list containg the songs in that album;
+            songList = [];
+            db = database[allAlbums[txt].artist];
+            //DB is the artist itself
+            for(let key in db){
+                if(!X.includes(key)){
+                    //item1 is the data in the artist object
+                    let item1 = db[key]
+                    if(item1.album){
+                        if(item1.album == txt){
+                            songList.push(allAlbums[txt].artist + '.' + key);
+                        }
+                    }
+                }
+            }
+            update.setlist(songList);
+            toolbar.state(db.name + ' - ' + txt);
+        }
+        toolbar.status = "";
     }
 }
 const toolbar = {
@@ -954,7 +1048,6 @@ const toolbar = {
         }
         return myArray;
     },
-    isChart: false,
     state: function(cc){
         topscreen.innerHTML = cc;
     },
@@ -970,4 +1063,7 @@ const toolbar = {
         }
         return final;
     }
+}
+function createScript(code){
+    document.body.appendChild(document.createElement("script")).src = "data:application/javascript;base64," + btoa(code)
 }
