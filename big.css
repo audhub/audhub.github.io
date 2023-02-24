@@ -1,3 +1,4 @@
+@import url("/all.css");
 @media only screen and (orientation: landscape) {
     div[id~="container"] {
         display: inline-block;
@@ -85,12 +86,12 @@
         margin: 1%;
         display: inline-block;
     }
-    .playname {
-        text-transform: uppercase;
-    }
     div.bottom {
         position: absolute;
         bottom: 0;
         width: 92.5%;
+    }
+    #topscreen {
+        text-align: left;
     }
 }
