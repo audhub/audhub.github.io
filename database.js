@@ -76,7 +76,7 @@ let database = {
     },
     "Da Riddim": {
         name: 'Da Riddim',
-        louder: {
+        "Louder": {
             name: 'Louder',
             img: 'https://assets.audiomack.com/dariddimm/fa74e4eab9af46c32202c2eb50857312bb9a6621b332ad0ee20f07c21c888400.jpeg?width=240&height=240&max=true',
             feat: 'Lithoxx, Aajaay, Cruizy B & Prince Cee',
@@ -429,7 +429,6 @@ let database = {
             name: 'Hellflames/Half Hot Hot Cold',
             plays: 2,
         },
-
     },
     "Schway": {
         name: "Schway",
