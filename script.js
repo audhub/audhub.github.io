@@ -360,7 +360,7 @@ const media = {
             off: '/svg/loop.svg',
             on: '/svg/loop-active.svg',
         },
-        cover: database.DaBaby.TOES.img,
+        cover: '/art.jpg',
     },
     pp: function() {
         state.getAttribute("src") == media.img.play.on ? audio.pause() : audio.play()
