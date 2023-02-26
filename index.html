@@ -17,7 +17,7 @@
         <link rel="icon" href="favicon.png">
         <script src="/database.js"></script>
         <script src="/chart.js"></script>
-        <script>if(window.location.hostname != "audhub.github.io"){chart = chartlist;}</script>
+        <script>domain = ['localhost', '192.168.43.94'];if(domain.includes(window.location.hostname)){chart = chartlist;}</script>
         <link rel="stylesheet" href="/small.css">
         <link rel="preload" href="/svg/pause.svg" as="image">
         <link rel="preload" href="/svg/download.svg" as="image">
@@ -56,7 +56,7 @@
                     <button class="tab">All</button>
                 </div>
                 <div class="bottom">
-                    <button class="tab" style="border-width: 1px; border-style: solid; border-color:  #444; border-left-style: none; border-right-style: none;">Settings</button>
+                    <button class="tab">Contact</button>
                 </div>
             </div>
               
