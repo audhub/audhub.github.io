@@ -304,7 +304,7 @@ const media = {
         if(media.played.includes(xxx)){}
         else {
             media.played.push(xxx);
-            if(location.hostname.toLowerCase() == "audhub.github.io"){
+            if(!domain.includes(location.hostname)){
                 tracker = new URL('https://l.linklyhq.com/l/1fiKQ');
                 tracker.searchParams.set(media.refine(xxx).k.name, media.refine(xxx).x.name);
                 fetch(tracker).catch(error => {});    
@@ -320,7 +320,7 @@ const media = {
         if(media.downloaded.includes(xox)){}
         else {
             media.downloaded.push(xox);
-            if(location.hostname.toLowerCase() == "audhub.github.io"){
+            if(!domain.includes(location.hostname)){
                 tracker = new URL('https://l.linklyhq.com/l/1fiKa');
                 tracker.set(media.refine(xox).k.name, media.refine(xxx).x.name);
                 fetch(tracker).catch(error => {});
@@ -603,7 +603,7 @@ const user = {
             return localStorage.getItem("id");
         },
         in: function() {
-            if (location.hostname.toLowerCase() == "audhub.github.io"){
+            if (!domain.includes(location.hostname)){
                 visit = new URL('https://l.linklyhq.com/l/1fiKY');
                 visit.searchParams.set("User", user.check.id());
                 fetch(visit).then(response => {}).catch(error => {})
