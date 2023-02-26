@@ -255,6 +255,7 @@ button[on]{
 }
 .playclass {
     border-radius: 10px;
+    background-image: url('/art.jpg');
 }
 .playtab {
     overflow: hidden;
