@@ -107,13 +107,11 @@ const update = {
                         break;
                 }
             } else {
-                switch (detectDeviceType()){
-                    case "desktop":
-                        album = document.createElement("span");
-                        item.appendChild(album);
-                        album.className = "album";
-                        album.innerText = "--"
-                        break;
+                if (detectDeviceType() == "desktop"){
+                    album = document.createElement("span");
+                    item.appendChild(album);
+                    album.className = "album";
+                    album.innerText = "--"
                 }
             }
         }
@@ -154,7 +152,6 @@ const update = {
         updateElement.style.display = 'block';
         updateElement.innerHTML = '';
         if(toolbar.isArtist){
-            //Data is for artists
             for(let key in item){
                 db = database[item[key]];
                 playtab = document.createElement("div")
@@ -162,7 +159,6 @@ const update = {
                 playtab.className = "playtab";
                 playimg = new Image();
                 playtab.appendChild(playimg);
-                //Generate image from first song
                 for(let key in db){
                     if(!X.includes(key)){
                         playimg.src = db[key].img;
@@ -176,8 +172,6 @@ const update = {
                 playname.className = "playname";
             }
         } else if(toolbar.isAlbum) {
-            //Do something if data is an album
-            //Data contains a name, artist name and image;
             for(let key in item){
                 let entry = item[key];
                 let playtab = document.createElement("div");
@@ -193,7 +187,6 @@ const update = {
                 playname.className = "playname";
             }
         } else {
-            //Data is for playlists
             for(let key in item){
                 playtab = document.createElement("div");
                 updateElement.appendChild(playtab);
@@ -214,11 +207,10 @@ const update = {
             playhide.appendChild(cover);
             cover.className = "playclass";
             element = updateElement.children[i];
-            cover.style.top = element.getBoundingClientRect().top + "px";
+            cover.style.top = element.offsetTop + "px";
             cover.style.width = element.offsetWidth + "px";
             cover.style.height = element.offsetHeight + "px";
             cover.style.left = element.offsetLeft + "px";
-            cover.style.backgroundImage = 'url(\''+media.img.cover+'\')';
         }
     },
     settings: function() {
@@ -360,7 +352,6 @@ const media = {
             off: '/svg/loop.svg',
             on: '/svg/loop-active.svg',
         },
-        cover: '/art.jpg',
     },
     pp: function() {
         state.getAttribute("src") == media.img.play.on ? audio.pause() : audio.play()
@@ -373,7 +364,9 @@ const media = {
     },
     isPlay: function() {
         state.src = media.img.play.on;
-        fillrange = setInterval(() => {range.value = Math.round(audio.currentTime)}, 100);
+        fillrange = setInterval(() => {
+            range.value = Math.round(audio.currentTime)
+        }, 100);
         media.rec();
     },
     isPause: function() {
@@ -420,7 +413,6 @@ const media = {
                     x = media.refine(xxx).x;
                     media.src(xxx, k, x);
                     return xxx;
-                    break;
             }
         }
     },
@@ -450,7 +442,7 @@ const media = {
         range.value = 0;
         range.max = Math.round(audio.duration);
         track.max = Math.round(audio.duration);
-        preview.style.backgroundImage = `url(${media.refine(xxx).x.img})`
+        preview.style.backgroundImage = `url('${media.refine(xxx).x.img}')`
         screentool.resize();
     },
     end: function() {
@@ -460,13 +452,7 @@ const media = {
                 audio.play();
                 break;
             default:
-                switch(media.checkState().shuffle) {
-                    case true:
-                        media.play(media.shuffle_song());
-                        break;
-                    default:
-                        media.next();
-                }
+                media.checkState().shuffle ? media.play(media.shuffle_song()) : media.next();
                 break;
         }
     },
@@ -477,61 +463,30 @@ const media = {
     },
     checkState: function() {
         const mediastate = {}
-        switch(shuffle.getAttribute("src")){
-            case media.img.shuffle.off:
-                mediastate.shuffle = false;
-                break;
-            case media.img.shuffle.on:
-                mediastate.shuffle = true;
-                break;
-        }
-        switch(state.getAttribute("src")){
-            case media.img.play.off:
-                mediastate.play = false;
-                break;
-            case media.img.play.on:
-                mediastate.play = true;
-                break;
-        }
-        switch(loop.getAttribute("src")){
-            case media.img.loop.off:
-                //Shuffle is off
-                mediastate.loop = false;
-                break;
-            case media.img.loop.on:
-                //Shuffle is on
-                mediastate.loop = true;
-                break;
-        }
+        shuffle.getAttribute("src") == media.img.shuffle.off ? mediastate.shuffle = false : mediastate.shuffle = true;
+        state.getAttribute("src") == media.img.play.off ? mediastate.play = false : mediastate.play = true;
+        loop.getAttribute("src") == media.img.loop.off ? mediastate.loop = false : mediastate.loop = true;
         return mediastate;
     },
     checkplaynext: function(){
-        if(media.playnext){
-            return true;
-        } else {
-            return false;
-        }
+        if(media.playnext){return true} else{return false}
     },
     playnext: false,
     search: {
         focus: function() {
-            switch(detectDeviceType()) {
-                case "mobile":
-                    label = document.querySelector("label");
-                    label.style.position = "fixed";
-                    label.style.width = '94%';
-                    label.style.top = '1.5%';
-                    label.style.left = '1%';
-                    menu.style.display = 'none';
-                    break;
+            if (detectDeviceType() == "mobile") {
+                label = document.querySelector("label");
+                label.style.position = "fixed";
+                label.style.width = '94%';
+                label.style.top = '1.5%';
+                label.style.left = '1%';
+                menu.style.display = 'none';
             }
         },
         blur: function() {
-            switch(detectDeviceType()) {
-                case "mobile":
-                    label.style = '';
-                    menu.style = '';
-                    break;
+            if (detectDeviceType() == "mobile") {
+                label.style = '';
+                menu.style = '';
             }
         }
     },
@@ -845,7 +800,6 @@ const screentool = {
     },
     findT: {
         click: function(w) {
-            //Find T from a click
             xtx = w;
             for(;xtx.className != "item";xtx = xtx.parentElement){}
             xax = xtx.getAttribute("key");
@@ -956,13 +910,10 @@ const screentool = {
                 break;
             case "albums":
                 toolbar.state('Albums');
-                //Create array showing all the albums in the database
                 allAlbums = {};
                 for(let key in database){
                     db = database[key]
-                    //Artist is db
                     for(let item2 in db) {
-                        //Artist data are item2
                         if(!X.includes(item2)){
                             item3 = db[item2];
                             if(item3.album){
@@ -985,6 +936,7 @@ const screentool = {
             case "now playing":
                 toolbar.state('Now Playing');
                 update.setlist(queue);
+                break;
             case "all":
                 toolbar.state('A-Z');
                 update.setlist(toolbar.sort());
@@ -1010,7 +962,6 @@ const screentool = {
             toolbar.state('Playlist: '+txt);
         } else if (toolbar.status == "artist"){
             txt = txt.replace(/&amp;/g, '&').replace(/[.]/g, '');
-            //generate array of songs from artist
             db = database[txt];
             dbs = [];
             for(let items in db){
@@ -1019,13 +970,10 @@ const screentool = {
             update.setlist(dbs);
             toolbar.state(db.name + '\'s Songs')
         } else if (toolbar.status == "album"){
-            //generate a list containg the songs in that album;
             songList = [];
             db = database[allAlbums[txt].artist];
-            //DB is the artist itself
             for(let key in db){
                 if(!X.includes(key)){
-                    //item1 is the data in the artist object
                     let item1 = db[key]
                     if(item1.album){
                         if(item1.album == txt){
@@ -1052,18 +1000,16 @@ const toolbar = {
         topscreen.innerHTML = cc;
     },
     sort: function() {
-        a2z = []
+        let a2z = []
         for(let key in thislist){
             a2z.push(thislist[key].split('.').reverse().join('.'));
         }
         a2z = a2z.sort();
-        final = [];
+        let final = [];
         for(let key in a2z){
             final.push(a2z[key].split('.').reverse().join('.'));
         }
         return final;
     }
 }
-function createScript(code){
-    document.body.appendChild(document.createElement("script")).src = "data:application/javascript;base64," + btoa(code)
-}
+console.info(`Number => Play Song, D => Download Current Song, Shift+D => Download Current Song's Album Art, SpaceBar => Play/Pause, ArrowKeys => Skip, N => Next song, B => Previous Song, MediaKeys => Previous/Next`.replaceAll(", ", "\n\n"))
