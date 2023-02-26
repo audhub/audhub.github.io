@@ -91,6 +91,13 @@
         bottom: 0;
         width: 92.5%;
     }
+    div.bottom>button.tab {
+        border-width: 1px;
+        border-style: solid;
+        border-color:#444;
+        border-left-style: none;
+        border-right-style: none;
+    }
     #topscreen {
         text-align: left;
     }
