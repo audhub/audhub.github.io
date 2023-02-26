@@ -13,6 +13,29 @@
         width: 100%;
         position: fixed;
     }
+    button.tab {
+        display: inline-block;
+        max-width: 35%;
+        min-width: 5%;
+        text-align: center;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    [class~="mobile-hide"]{
+        display: none;
+        width: 100%;
+        border: none;
+        overflow-x: auto;
+        scrollbar-width: none;
+        white-space: nowrap;       
+    }
+    [class="mobile-hide"]::-webkit-scrollbar {
+        width: 0px;
+    }
+    div[id~="slide"], div.bottom {
+        border-style: none;
+        display: inline;
+    }
     div[id="container 2"] {
         display: block;
         margin-top: 15%;
@@ -20,6 +43,7 @@
     }
     div[id="container 3"] {
         width: 100%;
+        background-image: var(--gradient);
         left: 0%;
         position: fixed;
         line-height: 170%;
@@ -29,9 +53,6 @@
         display: inline-block;
         width: 80%;
         vertical-align: 30%;
-    }
-    [class~="mobile-hide"]{
-        display: none;       
     }
     .artist {
         display: inline-block;
@@ -113,7 +134,6 @@
         background-image: var(--gradient);
     }
     #preview {
-        opacity: 0.5;
-        filter: blur(1px);
+        display: none;
     }
 }
