@@ -109,6 +109,7 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, '/')).then((snapshot) => {
         if(snapshot.exists()){
+            console.log(snapshot.val())
             let data = snapshot.val();
             //run through the database and extract keys and put them in an array
             let array = [];
@@ -116,14 +117,14 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
                 let artistL = data[artist]
                 for(song in artistL){
                     let result = `${artist}.${song}.${data[artist][song]}`
-                    result = result.split('[.]').reverse().join('[.]');
+                    result = result.split('.').reverse().join('.');
                     array.push(result);
                 }
             }
-            array.sort((a, b) => array[a] - array[b])
+            array.sort((a, b) =>a.toString().split('.').shift()-b.toString().split('.').shift())
             let myArray = []
             for(items of array){
-                let result = items.split('[.]').reverse().slice(0,2).join('[.]');
+                let result = items.split('.').reverse().slice(0,2).join('.');
                 myArray.push(result);
             }
             update.setlist(myArray);
@@ -139,7 +140,7 @@ function recStream(){
     let k = media.refine(xxx).k;
     let x = media.refine(xxx).x;
     // Create Path
-    const path = `/${k.name.replaceAll("[.]", "")}/${x.name}`;
+    const path = `/${k.name.replaceAll(".", "")}/${x.name}`;
     const dbRef = ref(getDatabase());
     get(child(dbRef, path)).then((snapshot) => {
         if(snapshot.exists()){
