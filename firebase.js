@@ -109,7 +109,24 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, '/')).then((snapshot) => {
         if(snapshot.exists()){
-            console.log(snapshot.val())
+            let data = snapshot.val();
+            //run through the database and extract keys and put them in an array
+            let array = [];
+            for(artist in data){
+                artistL = data[artist]
+                for(song in artistL){
+                    let result = `${artist}.${song}.${data[artist][song]}`
+                    result = result.split('[.]').reverse().join('[.]');
+                    array.push(result);
+                }
+            }
+            array.sort((a, b) => array[a] - array[b])
+            let myArray = []
+            for(items of array){
+                let result = items.split('[.]').reverse().slice(0,2).join('[.]');
+                myArray.push(result);
+            }
+            update.setlist(myArray);
         } else {
             console.log("No data available")
         }
