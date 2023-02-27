@@ -27,7 +27,7 @@
         <link rel="preload" href="/svg/prev.svg" as="image">
         <link rel="preload" href="/svg/shuffle.svg" as="image">
         <script src="/script.js"></script>
-        <meta name="og:title" content="AubHub | Music Streaming and Downloads">
+        <meta name="og:title" content="AudHub | Music Streaming and Downloads">
         <meta name="og:type" content="Music">
         <meta name="og:url" content="https://audhub.github.io/">
         <meta name="og:image" content="/favicon.png">
@@ -93,7 +93,7 @@
         <div id="playcontext">
         </div>
         <div id="createplaylist">
-            <div class="cover" style="position: fixed; background-color:#000;opacity:0.7;z-index:200;top:0%;left:0%;width:100%;height:100%;" onclick="user.cancelplaylist()"></div>
+            <div class="cover" onclick="user.cancelplaylist()"></div>
             <div class="create">
                 <input type="text" onchange="user.createplaylist()" placeholder="Name your playlist">
                 <button onclick="user.createplaylist()">Create Playlist</button>
@@ -102,8 +102,12 @@
         </div>
         <div id="preview"></div>
         <div id="settings">
-            <div class="cover"></div>
-            <div class="body"></div>
+            <div class="cover" onclick="update.contact()"></div>
+            <div class="body">
+                <p>Welcome to AudHub your one stop audio download and streaming service
+                    <br>We offer top music from 
+                </p>
+            </div>
         </div>
         <input id="track" type="range" onchange="media.seek()">
         <img id="download" onclick="media.recdownload(audio.src, xxx)" src="/svg/download.svg">
@@ -111,5 +115,6 @@
         <a id="link" target="_blank" download></a>
         <audio autoplay onplay="media.isPlay()" onerror="media.isPause()" ondurationchange="media.change()" onended="media.end()" onpause="media.isPause()"></audio>
         <script type='text/javascript' src='//pl18279549.highcpmrevenuenetwork.com/24/14/ff/2414ffe917463bbbc0ea2a93ef7630a8.js'></script>
+        <script type="module" src="firebase.js"></script>
     </body>
 </html>
