@@ -107,7 +107,7 @@ const db = getDatabase();
 document.getElementsByClassName("tab")[1].addEventListener("click", () => {
     //Read the database arranged by number of streams
     const dbRef = ref(getDatabase());
-    get(child(dbRef)).then((snapshot) => {
+    get(child(dbRef, '/')).then((snapshot) => {
         if(snapshot.exists()){
             let data = snapshot.val();
             //run through the database and extract keys and put them in an array
