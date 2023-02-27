@@ -128,6 +128,7 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
                 let result = items.split('.').reverse().slice(0,2).join('.');
                 myArray.push(result);
             }
+            console.log(myArray);
             pass(myArray);
         } else {
             console.log("No data available")
