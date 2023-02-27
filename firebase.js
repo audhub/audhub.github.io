@@ -113,7 +113,7 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
             //run through the database and extract keys and put them in an array
             let array = [];
             for(artist in data){
-                artistL = data[artist]
+                let artistL = data[artist]
                 for(song in artistL){
                     let result = `${artist}.${song}.${data[artist][song]}`
                     result = result.split('[.]').reverse().join('[.]');
