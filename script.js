@@ -1,3 +1,4 @@
+//import { recStream } from "./firebase.js";
 function detectDeviceType() {
     if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)){
         deviceType = "mobile";
@@ -213,7 +214,7 @@ const update = {
             cover.style.left = element.offsetLeft + "px";
         }
     },
-    settings: function() {
+    contact: function() {
         settings.style.display == "block" ? settings.style.display = "none" : settings.style.display = "block"
     }
 }
@@ -229,8 +230,7 @@ function random() {
     for(n = 0; keyd[n]; n++){
         let myObj = database[keyd[n]];
         for (let key in myObj){
-            if(X.includes(key)){}
-            else {
+            if(!X.includes(key)){
                 txt = keyd[n] + "." + key;
                 key2.push(txt)
             }
@@ -301,14 +301,14 @@ const media = {
     played: [],
     downloaded: [],
     rec: function() {
-        if(media.played.includes(xxx)){}
-        else {
+        if(!media.played.includes(xxx)){
             media.played.push(xxx);
             if(!domain.includes(location.hostname)){
                 tracker = new URL('https://l.linklyhq.com/l/1fiKQ');
                 tracker.searchParams.set(media.refine(xxx).k.name, media.refine(xxx).x.name);
                 fetch(tracker).catch(error => {});    
             }
+            //recStream(xxx);
         }
         if(user.recent.includes(xxx)){
             user.recent.splice(user.recent.indexOf(xxx), 1);
@@ -317,8 +317,7 @@ const media = {
         user.store.recent();
     },
     recdownload: function(src, xox){
-        if(media.downloaded.includes(xox)){}
-        else {
+        if(!media.downloaded.includes(xox)){
             media.downloaded.push(xox);
             if(!domain.includes(location.hostname)){
                 tracker = new URL('https://l.linklyhq.com/l/1fiKa');
@@ -596,7 +595,7 @@ document.onkeydown = (keyDownEvent) => {
 const user = {
     check: {
         id: function() {
-            if(localStorage.getItem("id")){} else {
+            if(!localStorage.getItem("id")){
                 id = new Date().toString().toUpperCase().split('(').shift().replace(/[ +:]/g, '');
                 localStorage.setItem("id", id);
             }
@@ -748,8 +747,7 @@ const screentool = {
         preview.style.height = meta.parentElement.getBoundingClientRect().height + 'px';
     },
     displayClicked: function(e) {
-        if(playctx.style.display == "block" || ctxmenu.style.display == "block" || menu.style.display == "block"){}
-        else {
+        if(!(playctx.style.display == "block" || ctxmenu.style.display == "block" || menu.style.display == "block")){
             xxx = screentool.findT.click(e.target).xax;
             t = screentool.findT.click(e.target).xtx;
             k = media.refine(xxx).k;
@@ -930,8 +928,8 @@ const screentool = {
                 update.playlist(allAlbums);
                 toolbar.isAlbum = false;
                 break;
-            case "settings":
-                update.settings();
+            case "contact":
+                update.contact();
                 break;
             case "now playing":
                 toolbar.state('Now Playing');
@@ -1012,4 +1010,5 @@ const toolbar = {
         return final;
     }
 }
-console.info(`Number => Play Song, D => Download Current Song, Shift+D => Download Current Song's Album Art, SpaceBar => Play/Pause, ArrowKeys => Skip, N => Next song, B => Previous Song, MediaKeys => Previous/Next`.replaceAll(", ", "\n\n"))
+console.info(`Number => Play Song, D => Download Current Song, Shift+D => Download Current Song's Album Art, SpaceBar => Play/Pause, ArrowKeys => Skip, N => Next song, B => Previous Song, MediaKeys => Previous/Next`)
+function pass(array){update.setlist(array)};
