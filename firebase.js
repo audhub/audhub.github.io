@@ -104,7 +104,7 @@ const db = getDatabase();
 //       console.error(error);
 //     });
 // }
-function chartDB() {
+document.getElementsByClassName("tab")[1].addEventListener("click", () => {
     //Read the database arranged by number of streams
     const dbRef = ref(getDatabase());
     get(child(dbRef)).then((snapshot) => {
@@ -132,7 +132,7 @@ function chartDB() {
     }).catch((error) => {
         console.error(error);
     })
-}
+})
 function recStream(){
     //Extract K and X
     let k = media.refine(xxx).k;
@@ -162,7 +162,6 @@ function recStream(){
 }
 let hasPlayed = [];
 document.querySelector("audio").addEventListener("play", () => {
-    console.log(media.refine(xxx));
     if(!hasPlayed.includes(xxx)){
         hasPlayed.push(xxx);
         recStream();
