@@ -421,9 +421,9 @@ let database = {
             url: 'https://dl.dropboxusercontent.com/s/t9zjd1mb7i741hl/Promzywild%20-%20Fuck%20Boy%20%28feat.%20Neon%20Mik3y%29.mp3?dl=0',
         }
     },
-    "Rexx": {
+    "Rexx!": {
         name: 'Rexx!',
-        "Hellflames": {
+        "Hellflames/Half Hot Hot Cold": {
             url: 'https://dl.dropboxusercontent.com/s/5lxyvcaluv970t2/Rexx%21%20-%20hellflameshalf%20hot%20hot%20cold.m4a?dl=0',
             img: 'https://dl.dropboxusercontent.com/s/9icw6w872q5z4dd/Rexx.jpg?dl=0',
             name: 'Hellflames/Half Hot Hot Cold',
