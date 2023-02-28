@@ -8,7 +8,12 @@ function detectDeviceType() {
     return deviceType;
 }
 window.onload = () => {
-    settings = document.getElementById("settings");
+    tdlink = document.getElementById("tdlink")
+    noalbum = document.getElementById("noalbum");
+    tableImg = document.querySelector("td>img");
+    td = document.getElementsByTagName("td");
+    prop = document.getElementById("properties");
+    contact = document.getElementById("contact");
     preview = document.getElementById("preview");
     menu = document.querySelector("div[class=\"mobile-hide sub\"]")
     menu.addEventListener("click", screentool.menuclick)
@@ -16,17 +21,13 @@ window.onload = () => {
     updateElement = document.getElementById("update");
     search = document.querySelector("input[type=\"search\"]");
     playhide = document.getElementById("playhide");
-    playlistcreator = document.getElementById("createplaylist");
     ctxmenu = document.getElementById("contextmenu");
-    playctx = document.getElementById("playcontext");
     display = document.querySelector("#display");
     display.addEventListener("click", screentool.displayClicked);
     updateElement.addEventListener("click", screentool.playlistclick);
     ctxmenu.addEventListener("click", screentool.contextclick);
-    playctx.addEventListener("click", user.addToPlaylist);
     display.addEventListener("click", () => screentool.hideall());
     display.addEventListener("contextmenu", screentool.contextmenu);
-    display.addEventListener("contextmenu", () => screentool.hideplay());
     display.parentElement.addEventListener("scroll", () => screentool.hideall());
     window.addEventListener("scroll", () => screentool.hideall());
     link = document.getElementById("link");
@@ -53,6 +54,19 @@ window.onload = () => {
     user.check.url();
 }
 const update = {
+    prop: function() {
+        if(prop.style.display != "block"){
+            prop.style.display = "block";
+            tableImg.src = ctxObj.x.img;
+            td[1].innerText = ctxObj.k.name;
+            td[2].innerText = ctxObj.x.name;
+            ctxObj.x.album ? td[3].innerText = ctxObj.x.album : td[3].innerText = "...";
+            ctxObj.x.feat ? td[5].innerText = ctxObj.x.feat : td[5].innerText = "...";
+            tdlink.href = ctxObj.x.url;
+        } else {
+            prop.style = "";
+        }
+    },
     hideplay: function() {
         updateElement.style.display = 'none';
         playhide.style.display = 'none';
@@ -129,7 +143,7 @@ const update = {
         }
     },
     style: function(css) {
-        style.innerHTML = 'div.item[key="'+css+'"]{background-image: linear-gradient(to bottom, #5152ff, #0077ff)}';
+        style.innerHTML = 'div.item[key="'+css+'"]{background-image: var(--gradient)}';
     },
     claimfirst: function() {
         xxx = display.firstElementChild.getAttribute("key");
@@ -215,7 +229,7 @@ const update = {
         }
     },
     contact: function() {
-        settings.style.display == "block" ? settings.style.display = "none" : settings.style.display = "block"
+        contact.style.display == "block" ? contact.style.display = "none" : contact.style.display = "block"
     }
 }
 const thislist = [];
@@ -538,7 +552,7 @@ document.onkeydown = (keyDownEvent) => {
                     media.next();
                     break;
                 case "arrowright":
-                    if(keyDownEvent.altKey == false){
+                    if(!keyDownEvent.altKey){
                         keyDownEvent.preventDefault();
                         ai = Math.round(audio.currentTime);
                         if((ai + 10) <= Number(range.max)){
@@ -549,7 +563,7 @@ document.onkeydown = (keyDownEvent) => {
                     }
                     break;
                 case "arrowleft":
-                    if(keyDownEvent.altKey == false){
+                    if(!keyDownEvent.altKey){
                         keyDownEvent.preventDefault();
                         ai = Math.round(audio.currentTime);
                         if((Number(range.value) - 10) >= 0){
@@ -574,13 +588,33 @@ document.onkeydown = (keyDownEvent) => {
                     } else {
                         media.recdownload(audio.src, xxx);
                     }
-                    break;    
+                    break;
+                case "escape":
+                    //loop through modals;
+                    let modals = ['div#contact', 'div#contextmenu', 'div#properties']
+                    for(items of modals){
+                        let element = document.querySelector(items);
+                        element.style = "";
+                    }
+                    break;
+                case "m":
+                    if(!keyDownEvent.ctrlKey){
+                        keyDownEvent.preventDefault();
+                        ctxObj = {};
+                        ctxObj.e = screentool.findT.frKey(xxx);
+                        ctxObj.xxx = xxx;
+                        ctxObj.x = media.refine(ctxObj.xxx).x;
+                        ctxObj.k = media.refine(ctxObj.xxx).k;
+                        ctxObj.url = ctxObj.x.url;
+                        update.prop();
+                    }
+                    break;
             }
             num = [];
             for(i=0;i<10;i++){
                 num.push(i.toString());
             }
-            if(num.includes(keyDownEvent.key) && keyDownEvent.ctrlKey == false){
+            if(num.includes(keyDownEvent.key) && !keyDownEvent.ctrlKey){
                 keyDownEvent.preventDefault();
                 if(keyDownEvent.key != 0){
                     no = Number(keyDownEvent.key) - 1;
@@ -589,6 +623,10 @@ document.onkeydown = (keyDownEvent) => {
                     display.children[9].click();
                 }
             }
+        }
+        else if(keyDownEvent.target == search && keyDownEvent.key == "Enter"){
+            search.blur();
+            display.firstElementChild.click();         
         }
     }
 }
@@ -657,85 +695,17 @@ const user = {
             } else {
                 return false;
             }
-        },
-        playlist: function() {
-            if(localStorage.getItem("playlist")){
-                user.playlist = JSON.parse(localStorage.getItem("playlist"));
-                return true;
-            } else {
-                return false;
-            }
-        },
+        }
     },
     recent: [],
-    playlist: {},
     extract: function() {
         user.check.recent();
-        user.check.playlist();
     },
     store: {
         recent: function() {
             localStorage.setItem("recent", JSON.stringify(user.recent));
         },
-        playlist: function() {
-            localStorage.setItem("playlist", JSON.stringify(user.playlist));
-        }
     },
-    cancelplaylist: function() {
-        playlistcreator.style.display = 'none';
-    },
-    createplaylist: function() {
-        listname = playlistcreator.children[1].children[0].value.toString();
-        console.log(listname)
-        if(user.playlist[listname]){
-            alert("Playlist already exists");
-        } else {
-            anum = [];
-            for(i=0;i < 10; i++){
-                anum.push(i.toString());
-            }
-            if(anum.includes(listname.charAt(0))){
-                alert("The first character of your playlist cannot be a number")
-            } else if(listname.includes(".")) {
-                alert("No dots allowed")
-            } else {
-                user.playlist[listname] = {};
-                user.playlist[listname].content = [];
-                user.playlist[listname].name = listname;
-                if(user.pending){
-                    user.playlist[listname].content.unshift(user.pending);
-                    user.pending = false;
-                }
-                user.store.playlist();
-                user.cancelplaylist();
-                screentool.hideall()
-            }
-        }
-    },
-    pending: false,
-    addToPlaylist: function(e) {
-        switch(e.target.innerText.toLowerCase()){
-            case "new playlist":
-                user.createnewplaylist(ctxObj.xxx);
-                break;
-            default:
-                if(user.playlist[e.target.innerText].content.includes(ctxObj.xxx)){
-                    alert("This song alredy exists in the playlist");
-                } else {
-                    user.playlist[e.target.innerText].content.push(ctxObj.xxx);
-                    user.store.playlist();
-                    screentool.hideall();
-                }
-                break;
-        }
-    },
-    createnewplaylist: function(pend) {
-        screentool.hideall();
-        user.pending = pend;
-        playlistcreator.style.display = "block";
-        playlistcreator.children[1].children[0].value = '';
-        playlistcreator.children[1].children[0].focus();
-    }
 }
 const screentool = {
     resize: function() {
@@ -747,7 +717,7 @@ const screentool = {
         preview.style.height = meta.parentElement.getBoundingClientRect().height + 'px';
     },
     displayClicked: function(e) {
-        if(!(playctx.style.display == "block" || ctxmenu.style.display == "block" || menu.style.display == "block")){
+        if(!(ctxmenu.style.display == "block" || menu.style.display == "block")){
             xxx = screentool.findT.click(e.target).xax;
             t = screentool.findT.click(e.target).xtx;
             k = media.refine(xxx).k;
@@ -826,44 +796,55 @@ const screentool = {
                 queue.splice(t0 + 1,0,ctxObj.xxx)
                 screentool.hidecontext();
                 break;
-            case "add to":
-                if(user.check.playlist()){
-                    screentool.playcontext(e);
-                } else {
-                    screentool.hidecontext();
-                    user.createnewplaylist(ctxObj.xxx);
-                }
-                break;
             case "download":
                 screentool.hidecontext();
                 media.recdownload(ctxObj.url, ctxObj.xxx);
+                break;
+            case "properties":
+                screentool.hidecontext();
+                update.prop();
+                break;
+            case "show album":
+                screentool.hidecontext();
+                if(ctxObj.x.album){
+                    let albumList = [];
+                    for(song in ctxObj.k){
+                        if(!X.includes(song)){
+                            if(ctxObj.k[song].album){
+                                if(ctxObj.k[song].album == ctxObj.x.album){
+                                    albumList.push(`${ctxObj.k.name}.${ctxObj.k[song].name}`);
+                                }
+                            }
+                        }
+                    }
+                    update.setlist(albumList);
+                    update.buttoncss(document.getElementsByClassName("tab")[6]);
+                    toolbar.state(`${ctxObj.k.name} - ${ctxObj.x.album}`);
+                }
+                else {
+                    noalbum.style.display = "block";
+                    let timer = setTimeout(() => {noalbum.removeAttribute("style")}, 1500);
+                }
+                break;
+            case "show artist":
+                screentool.hidecontext();
+                songList = [];
+                for(song in ctxaObj.k){
+                    if(!X.includes(song)){
+                        songList.push(`${ctxObj.k.name.replaceAll(".", "")}.${ctxObj.k[song].name}`);
+                    }
+                }
+                update.setlist(songList);
+                update.buttoncss(document.getElementsByClassName("tab")[5]);
+                toolbar.state(`${ctxObj.k.name}'s Songs`);
                 break;
         }
     },
     hidecontext: function(){
         ctxmenu.style = "";
     },
-    playcontext: function(e) {
-        playctx.innerHTML = '';
-        button = document.createElement("button");
-        playctx.appendChild(button);
-        button.innerText = "New Playlist";
-        for(let key in user.playlist){
-            button = document.createElement("button");
-            playctx.appendChild(button);
-            button.innerText = user.playlist[key].name;
-        }
-        playctx.style.display = "block";
-        playctx.style.left = e.pageX + "px";
-        playctx.style.top = e.pageY + "px";
-        screentool.controlcontext(playctx);
-    },
-    hideplay: function(){
-        playctx.style = "";
-    },
     hideall: function() {
         screentool.hidecontext();
-        screentool.hideplay();
         if(detectDeviceType() == "mobile"){
             if(menu.style.display == "block"){
                 menu.style.display = "none"
@@ -872,6 +853,7 @@ const screentool = {
         }
     },
     menuclick: function(e) {
+        screentool.hideall();
         switch(e.target.innerText.toLowerCase()){
             case "recommended":
                 toolbar.state('My Music');
@@ -879,7 +861,7 @@ const screentool = {
                 break;
             case "playlists":
                 toolbar.state('Playlists');
-                update.playlist(user.playlist);
+                update.playlist(playlist);
                 toolbar.status = "playlist"
                 break;
             case "charts":
@@ -956,7 +938,7 @@ const screentool = {
                 txt = e.target.innerHTML;
         }
         if(toolbar.status == "playlist"){
-            update.setlist(user.playlist[txt].content);
+            update.setlist(playlist[txt].content);
             toolbar.state('Playlist: '+txt);
         } else if (toolbar.status == "artist"){
             txt = txt.replace(/&amp;/g, '&').replace(/[.]/g, '');
@@ -1010,5 +992,5 @@ const toolbar = {
         return final;
     }
 }
-console.info(`Number => Play Song, D => Download Current Song, Shift+D => Download Current Song's Album Art, SpaceBar => Play/Pause, ArrowKeys => Skip, N => Next song, B => Previous Song, MediaKeys => Previous/Next`)
+console.info(`Number => Play Song, D => Download Current Song, Shift+D => Download Current Song's Album Art, SpaceBar => Play/Pause, ArrowKeys => Skip, N => Next song, B => Previous Song, MediaKeys => Previous/Next, M => Display Metadata`)
 function pass(array){update.setlist(array)};
