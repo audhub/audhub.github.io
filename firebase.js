@@ -137,7 +137,7 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
 document.getElementsByClassName("ctx")[5].addEventListener("click", () => {
     if(!domain.includes(window.location.hostname)){
         const dbRef = ref(getDatabase());
-        path = `/${ctxObj.k.name.replaceAll(".", "")}/${ctxObj.x.name.replaceAll("/", "=")}`
+        const path = `/${ctxObj.k.name.replaceAll(".", "")}/${ctxObj.x.name.replaceAll("/", "=")}`
         get(child(dbRef, path)).then((snapshot) => {
             if(snapshot.exists()){
                 td[4].innerText = snapshot.val();
@@ -152,7 +152,7 @@ document.getElementsByClassName("ctx")[5].addEventListener("click", () => {
 window.onkeydown = (keyDownEvent) => {
     if(keyDownEvent.key.toLowerCase() == "m" && !keyDownEvent.ctrlKey && !domain.includes(window.location.hostname)){
         const dbRef = ref(getDatabase());
-        path = `/${ctxObj.k.name.replaceAll(".", "")}/${ctxObj.x.name.replaceAll("/", "=")}`
+        const path = `/${ctxObj.k.name.replaceAll(".", "")}/${ctxObj.x.name.replaceAll("/", "=")}`
         get(child(dbRef, path)).then((snapshot) => {
             if(snapshot.exists()){
                 td[4].innerText = snapshot.val();
