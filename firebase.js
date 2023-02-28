@@ -126,7 +126,9 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
                     array[item] = array[item].split('.').slice(1,3).reverse().join('.');
                 }
                 console.log(array);
+                toolbar.isChart = true;
                 pass(array.reverse());
+                toolbar.isChart = false;
             } else {
                 console.log("No data available")
             }
