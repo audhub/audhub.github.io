@@ -137,7 +137,7 @@ function recStream(){
     let k = media.refine(xxx).k;
     let x = media.refine(xxx).x;
     // Create Path
-    const path = `/${k.name.replaceAll(".", "")}/${x.name}`;
+    const path = `/${k.name.replaceAll(".", "")}/${x.name.replaceAll("/", "")}`;
     const dbRef = ref(getDatabase());
     get(child(dbRef, path)).then((snapshot) => {
         if(snapshot.exists()){
