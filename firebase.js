@@ -109,7 +109,6 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, '/')).then((snapshot) => {
         if(snapshot.exists()){
-            console.log(snapshot.val())
             let data = snapshot.val();
             //run through the database and extract keys and put them in an array
             let array = [];
@@ -122,12 +121,10 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
                 }
             }
             array.sort((a, b) =>a.toString().split('.').shift()-b.toString().split('.').shift())
-            console.log(array)
             for(item in array){
                 array[item] = array[item].split('.').slice(1,3).reverse().join('.');
             }
-            console.log(array);
-            pass(array);
+            pass(array.reverse());
         } else {
             console.log("No data available")
         }
