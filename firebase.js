@@ -124,10 +124,10 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
             array.sort((a, b) =>a.toString().split('.').shift()-b.toString().split('.').shift())
             console.log(array)
             for(item in array){
-                array[item] = array[item].split('.').slice(1,3).join('.');
+                array[item] = array[item].split('.').slice(1,3).reverse().join('.');
             }
             console.log(array);
-            update.setlist(array);
+            pass(array);
         } else {
             console.log("No data available")
         }
