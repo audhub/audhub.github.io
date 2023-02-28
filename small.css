@@ -51,7 +51,7 @@
     }
     label {
         display: inline-block;
-        width: 80%;
+        width: calc(100% - 65px);
         vertical-align: 30%;
     }
     .artist {
@@ -105,14 +105,14 @@
     #contextmenu, #playcontext {
         width: 30%;
     }
-    #createplaylist>.create {
+    div.modal>.body {
         top: 28%;
         padding-top: 5%;
         height: 40%;
-        left: 10%;
-        width: 80%;
+        left: 5%;
+        width: 90%;
     }
-    #createplaylist>.create>* {
+    #createplaylist>.body>* {
         margin: 3%;
     }
     .playtab {
@@ -131,9 +131,11 @@
         font-size: larger;
         border-bottom-left-radius: 30px;
         border-bottom-right-radius: 30px;
-        background-image: var(--gradient);
     }
     #preview {
         display: none;
+    }
+    #noalbum {
+        bottom: 10%;
     }
 }
