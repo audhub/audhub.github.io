@@ -116,7 +116,7 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
             for(artist in data){
                 let artistL = data[artist]
                 for(song in artistL){
-                    let result = `${artist}.${song}.${data[artist][song]}`
+                    let result = `${artist.replaceAll("&", "and")}.${song}.${data[artist][song]}`
                     result = result.split('.').reverse().join('.');
                     array.push(result);
                 }
