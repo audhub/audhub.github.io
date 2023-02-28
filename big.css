@@ -69,11 +69,15 @@
     #contextmenu, #playcontext {
         width: 7%;
     }
-    #createplaylist>.create {
+    #createplaylist>.create, #settings>.body {
         top: 23%;
         height: 50%;
         left: 30%;
         width: 40%;
+    }
+    #settings>.body {
+        padding: 1%;
+        left: 29%;
     }
     #createplaylist>.create>* {
         margin: 2%;
