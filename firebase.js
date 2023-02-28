@@ -115,7 +115,7 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
             for(artist in data){
                 let artistL = data[artist]
                 for(song in artistL){
-                    let result = `${artist.replaceAll("&", "and")}.${song}.${data[artist][song]}`
+                    let result = `${artist.replaceAll("&", "and")}.${song.replaceAll("=", "/")}.${data[artist][song]}`
                     result = result.split('.').reverse().join('.');
                     array.push(result);
                 }
@@ -137,7 +137,7 @@ function recStream(){
     let k = media.refine(xxx).k;
     let x = media.refine(xxx).x;
     // Create Path
-    const path = `/${k.name.replaceAll(".", "")}/${x.name.replaceAll("/", "")}`;
+    const path = `/${k.name.replaceAll(".", "")}/${x.name.replaceAll("/", "=")}`;
     const dbRef = ref(getDatabase());
     get(child(dbRef, path)).then((snapshot) => {
         if(snapshot.exists()){
