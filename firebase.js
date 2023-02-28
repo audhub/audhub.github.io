@@ -105,34 +105,63 @@ const db = getDatabase();
 //     });
 // }
 document.getElementsByClassName("tab")[1].addEventListener("click", () => {
-    //Read the database arranged by number of streams
-    const dbRef = ref(getDatabase());
-    get(child(dbRef, '/')).then((snapshot) => {
-        if(snapshot.exists()){
-            let data = snapshot.val();
-            //run through the database and extract keys and put them in an array
-            let array = [];
-            for(artist in data){
-                let artistL = data[artist]
-                for(song in artistL){
-                    let result = `${artist.replaceAll("&", "and")}.${song.replaceAll("=", "/")}.${data[artist][song]}`
-                    result = result.split('.').reverse().join('.');
-                    array.push(result);
+    if(!domain.includes(window.location.hostname)){
+        //Read the database arranged by number of streams
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, '/')).then((snapshot) => {
+            if(snapshot.exists()){
+                let data = snapshot.val();
+                //run through the database and extract keys and put them in an array
+                let array = [];
+                for(artist in data){
+                    let artistL = data[artist]
+                    for(song in artistL){
+                        let result = `${artist.replaceAll("&", "and")}.${song.replaceAll("=", "/")}.${data[artist][song]}`
+                        result = result.split('.').reverse().join('.');
+                        array.push(result);
+                    }
                 }
+                array.sort((a, b) =>a.toString().split('.').shift()-b.toString().split('.').shift())
+                for(item in array){
+                    array[item] = array[item].split('.').slice(1,3).reverse().join('.');
+                }
+                pass(array.reverse());
+            } else {
+                console.log("No data available")
             }
-            array.sort((a, b) =>a.toString().split('.').shift()-b.toString().split('.').shift())
-            for(item in array){
-                array[item] = array[item].split('.').slice(1,3).reverse().join('.');
-            }
-            pass(array.reverse());
-        } else {
-            console.log("No data available")
-        }
-    }).catch((error) => {
-        console.error(error);
-    })
+        }).catch((error) => {
+            console.error(error);
+        })
+    }
 })
+document.getElementsByClassName("ctx")[5].addEventListener("click", () => {
+    if(!domain.includes(window.location.hostname)){
+        const dbRef = ref(getDatabase());
+        path = `/${ctxObj.k.name.replaceAll(".", "")}/${ctxObj.x.name.replaceAll("/", "=")}`
+        get(child(dbRef, path)).then((snapshot) => {
+            if(snapshot.exists()){
+                td[4].innerText = snapshot.val();
+            } else {
+                td[4].innerText = "...";
+            }
+        })
+    }
+})
+window.onkeydown = (keyDownEvent) => {
+    if(keyDownEvent.key.toLowerCase() == "m" && !keyDownEvent.ctrlKey && !domain.includes(window.location.hostname)){
+        const dbRef = ref(getDatabase());
+        path = `/${ctxObj.k.name.replaceAll(".", "")}/${ctxObj.x.name.replaceAll("/", "=")}`
+        get(child(dbRef, path)).then((snapshot) => {
+            if(snapshot.exists()){
+                td[4].innerText = snapshot.val();
+            } else {
+                td[4].innerText = "...";
+            }
+        })
+    }
+}
 function recStream(){
+    if(!domain.includes(window.location.hostname)){
     //Extract K and X
     let k = media.refine(xxx).k;
     let x = media.refine(xxx).x;
@@ -157,7 +186,7 @@ function recStream(){
         }
     }).catch((error) => {
         console.error(error)
-    })
+    })}
 }
 let hasPlayed = [];
 document.querySelector("audio").addEventListener("play", () => {
