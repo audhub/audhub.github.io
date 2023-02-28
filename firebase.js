@@ -127,6 +127,7 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
                 array[item] = array[item].split('.').slice(1,3).join('.');
             }
             console.log(array);
+            update.setlist(array);
         } else {
             console.log("No data available")
         }
