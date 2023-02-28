@@ -129,7 +129,6 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
                 myArray.push(result);
             }
             console.log(myArray);
-            pass(myArray);
         } else {
             console.log("No data available")
         }
