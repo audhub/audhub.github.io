@@ -34,7 +34,6 @@ let database = {
             img: 'https://assets.audiomack.com/gold-2209/01fa9f0bdabdae6cca2b8618a877a27c78924e5f37947cce27a611e47ba001ba.jpeg?type=song&width=165&height=165&max=true',
             url: 'https://dl.dropboxusercontent.com/s/ep3h5e6p5fqgeoy/Big%20Gold%20-%20Calm%20Down.m4a?dl=0',
             name: 'Calm Down',
-            plays: 2,
         },
         name: 'Big Gold',
     },
@@ -142,7 +141,6 @@ let database = {
             img: 'https://assets.audiomack.com/iamennywest/34f3c29e719dde715924c0d037b9a59a4c6ab388c8e8d9fcd9db750be40313f5.jpeg?width=165&height=165&max=true',
             url: 'https://dl.dropboxusercontent.com/s/hrcyigr0b8e6tkr/Enny%20West%20-%20Say%20Your%20Name?dl=0',
             name: 'Say Your Name',
-            plays: 3,
             album: 'Crazy Love Freesyle',
         },
         "Wordings On The Closet": {
@@ -177,7 +175,6 @@ let database = {
             feat: 'Wake Dreams',
             url: 'https://dl.dropboxusercontent.com/s/dto5jix395awib2/Jectro%20-%20Blue%20%28feat.%20Wake%20Dreams%29.m4a?dl=0',
             album: 'Awesome',
-            plays: 7,
         },
         name: 'Jectro'
     },
@@ -193,7 +190,6 @@ let database = {
     "Klymax9": {
         "Dead Inside": {
             name: 'Dead Inside',
-            plays: 3,
             feat: 'Mikolly',
             img: 'https://assets.audiomack.com/klymax-9/5a8d7aacd4fe6d6e2d0de085b050d07fc5b9b533b95f42b3267e4bb006f6f1b6.jpeg?type=song&width=280&height=280&max=true',
             url: 'https://dl.dropboxusercontent.com/s/wi9rrtc0zesegzd/Klymax9%20-%20Dead%20Inside%20%28feat.%20Mikolly%29.m4a?dl=0',
@@ -391,7 +387,6 @@ let database = {
     "Neon Mik3y": {
         "Trap": {
             name: 'Trap',
-            plays: 2,
             feat: 'Aajaay',
             album: 'Nexus Kidd',
             img: 'https://assets.audiomack.com/neonmik3y/a428aeb1301e055a116ae48fd45e9b958d06eb994baa60e17e89b10323c8965a.jpeg?type=album&width=280&height=280&max=true',
@@ -402,7 +397,6 @@ let database = {
     "Oni Banks": {
         "Hearty": {
             name: 'Hearty',
-            plays: 2,
             album: 'Lion In The Dark',
             feat: 'Skayaura',
             url: 'https://dl.dropboxusercontent.com/s/j917oe2nwzj9fa4/Oni%20Banks%20-%20Hearty%20%28feat.%20Skayaura%29.m4a?dl=0',
@@ -414,7 +408,6 @@ let database = {
         name: 'Promzywild',
         "Fuck Boy": {
             name: 'Fuck Boy',
-            plays: 3,
             feat: 'Neon Mik3y',
             stream: 'https://onerpm.link/152018587464',
             img: 'https://dl.dropboxusercontent.com/s/njz0hpjvk5abfc5/fuck%20boy.jpg?dl=0',
@@ -427,7 +420,6 @@ let database = {
             url: 'https://dl.dropboxusercontent.com/s/5lxyvcaluv970t2/Rexx%21%20-%20hellflameshalf%20hot%20hot%20cold.m4a?dl=0',
             img: 'https://dl.dropboxusercontent.com/s/9icw6w872q5z4dd/Rexx.jpg?dl=0',
             name: 'Hellflames/Half Hot Hot Cold',
-            plays: 2,
         },
     },
     "Schway": {
