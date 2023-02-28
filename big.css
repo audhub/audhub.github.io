@@ -69,17 +69,17 @@
     #contextmenu, #playcontext {
         width: 7%;
     }
-    #createplaylist>.create, #settings>.body {
+    div.modal>.body {
         top: 23%;
         height: 50%;
         left: 30%;
         width: 40%;
     }
-    #settings>.body {
+    #contact>.body {
         padding: 1%;
         left: 29%;
     }
-    #createplaylist>.create>* {
+    #createplaylist>.body>* {
         margin: 2%;
     }
     .playtab {
