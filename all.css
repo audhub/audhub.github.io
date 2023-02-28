@@ -27,8 +27,8 @@ label {
     display: block;
     padding: 5px;
     padding-bottom: 0px;
+    padding-right: 0px;
     height: 30px;
-    padding-top: 5px;
     overflow: hidden;
 }
 input[type="search"] {
@@ -155,7 +155,7 @@ input[type="range"]:focus::-moz-range-thumb {
 div[scheme="light"] {
     background-color: #111;
 }
-#contextmenu, #playcontext {
+#contextmenu, #playcontext, #noalbum {
     position: fixed;
     background-color: #000;
     padding: 1%;
@@ -184,22 +184,27 @@ div[scheme="light"] {
 #contextmenu>button:hover, #contextmenu>button:focus, #playcontext>button:hover, #playcontext>button:focus {
     background-image:  var(--gradient);
 }
-#createplaylist>.create, #settings>.body {
+div.modal>.body {
+    overflow-y: auto;
     position: fixed;
     z-index: 201;
     background-color: #222;
-    border-radius: 10px;
+    border-radius: 20px;
     text-align: center;
     padding-top: 2%;
+    scrollbar-width: none;
 }
-#createplaylist>.create>* {
+div.modal>.body::-webkit-scrollbar {
+    width: 0px;
+}
+#createplaylist>.body>* {
     display: inline-block;
     height: 20%;
 }
-#createplaylist, #settings {
+div.modal {
     display: none;
 }
-#createplaylist>.create>* {
+#createplaylist>.body>*, #tdlink>button {
     outline: none;
     background-color: #1A1A1A;
     border-style: none;
@@ -208,16 +213,16 @@ div[scheme="light"] {
     font-family: ui;
     border-radius: 10px;
 }
-#createplaylist>.create>button {
+#createplaylist>.body>button, #tdlink>button {
     background-image:  var(--gradient);
     width: 60%;
 }
-#createplaylist>.create>input {
+#createplaylist>.body>input {
     width: 90%;
 }
-span[class="ref"] {
+span[class=ref] {
     display: inline-block;
-    width: 1.5%;
+    width: 2%;
 }
 .item {
     white-space: nowrap;
@@ -288,4 +293,43 @@ button[on]{
     left:0%;
     width:100%;
     height:100%;
+}
+.pride {
+    color: white;
+    font-weight: bolder;
+    letter-spacing: 0.125em;
+    font-size: larger;
+}
+#contact a {
+    color: white;
+}
+table {
+    padding: 10px;
+    width: 100%;
+    display: block;
+    text-align: left;
+    line-height: 2.5em;
+}
+th {
+    font-weight: normal;
+    margin-right: 15px;
+    display: inline-block;
+}
+.bold {
+    font-weight: bold;
+}
+th::after {
+    content: ":"
+}
+#properties .body {
+    padding-top: 0px;
+}
+td>img {
+    border-radius: 10px;
+}
+#tdlink>button {
+    width: 100%;
+    font-size: medium;
+    font-family: ui;
+    padding:5px;
 }
