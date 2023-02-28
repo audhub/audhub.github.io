@@ -144,6 +144,8 @@ document.getElementsByClassName("ctx")[5].addEventListener("click", () => {
             } else {
                 td[4].innerText = "...";
             }
+        }).catch((error) => {
+            console.error(error);
         })
     }
 })
@@ -157,6 +159,8 @@ window.onkeydown = (keyDownEvent) => {
             } else {
                 td[4].innerText = "...";
             }
+        }).catch((error) => {
+            console.error(error);
         })
     }
 }
