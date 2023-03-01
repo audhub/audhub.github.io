@@ -222,7 +222,7 @@ let database = {
             url: 'https://dl.dropboxusercontent.com/s/wpyuiptkhqvz62g/Lieky%20-%20Love%20%26%20Damages.m4a?dl=0',
             album: 'Love & Happiness',
         },
-        "Money Love": {
+        "Money & Love": {
             img: 'https://assets.audiomack.com/liekyfanlink-to/78c0951a22d75d5a7646c4666e972573190343fa29bf089eee498df7d0a43937.png?type=album&width=280&height=280&max=true',
             name: 'Money & Love',
             feat: 'Da Vibe',
