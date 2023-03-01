@@ -865,10 +865,12 @@ const screentool = {
                 toolbar.status = "playlist"
                 break;
             case "charts":
-                toolbar.isChart = true;
                 toolbar.state('Top 100');
-                update.setlist(toolbar.toArray(chart));
-                toolbar.isChart = false
+                if(domain.includes(window.location.hostname)){
+                    toolbar.isChart = true;
+                    update.setlist(toolbar.toArray(chart));
+                    toolbar.isChart = false
+                }
                 break;
             case "recent plays":
                 toolbar.state('Recent Plays');
