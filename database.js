@@ -216,7 +216,7 @@ let database = {
             album: 'Love & Happiness',
             url: 'https://dl.dropboxusercontent.com/s/tmy7lal89d4398s/Lieky%20-%20Elevate%20%28feat.%20Richie%20Jay%29.mp3?dl=0',
         },
-        "Love Damages": {
+        "Love & Damages": {
             img: 'https://assets.audiomack.com/liekyfanlink-to/6fcfc665c81ef261822959f5f4ebfcf94e02309af1d5d20142a52f98c2317c59.png?width=240&height=240&max=true',
             name: 'Love & Damages',
             url: 'https://dl.dropboxusercontent.com/s/wpyuiptkhqvz62g/Lieky%20-%20Love%20%26%20Damages.m4a?dl=0',
