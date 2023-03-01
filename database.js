@@ -490,7 +490,7 @@ let database = {
         },
     },
     "Wilfred": {
-        name: 'Wïlfrëd',
+        name: 'Wilfred',
         "Controller": {
             name: 'Controller',
             img: 'https://assets.audiomack.com/boy_wilfed/fb7d00e1a1c743f7d1ff8aa25121a870c31a537448123e636d79b10826183c14.jpeg?width=165&height=165&max=true',
