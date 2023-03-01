@@ -6,7 +6,7 @@ let database = {
             url: 'https://dl.dropboxusercontent.com/s/3ahop3j9tx2cafm/Ad3sola%20-%20Live%20Life.mp3?dl=0',
             name: 'Live Life',
         },
-        "Love IS Not For Me": {
+        "Love Is Not For Me": {
             img: 'https://assets.audiomack.com/ad3sola/730bb12309fb125627ca52ef1b311807d8e8806517d6515cf607c46cb09b6260.jpeg?type=album&width=280&height=280&max=true',
             album: 'Am I Dreaming?',
             url: 'https://dl.dropboxusercontent.com/s/hdxuf811jy1dv8w/Ad3sola%20-%20Love%20Is%20Not%20For%20Me?dl=0',
@@ -333,8 +333,9 @@ let database = {
             url: 'https://dl.dropboxusercontent.com/s/fo69at46m3p66nq/Marvin%20Grayson%20-%20Little%20Beginning%20RMK.m4a?dl=0',
         },
         "Special": {
-            name: "Mysteria",
+            feat: "Mysteria",
             album: "G'RAYSON",
+            name: 'Special',
             img: "https://assets.audiomack.com/marvingrayson07/9da0018f3a9b3c2c40e3a3f9ef3a3f413f71a9f4ff7bf82e30fec956cccb6437.jpeg?type=album&width=280&height=280&max=true",
             url: 'https://dl.dropboxusercontent.com/s/61uumhx63iqux7n/Marvin%20Grayson%20-%20Special%20%28feat.%20Mysteria%29.m4a?dl=0',
         },
