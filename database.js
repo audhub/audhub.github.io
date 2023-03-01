@@ -449,7 +449,7 @@ let database = {
         }
     },
     "Timmy Tammy": {
-        "Hating on Me": {
+        "Hating On Me": {
             name: 'Hating On Me',
             url: 'https://dl.dropboxusercontent.com/s/oh634fz14pwrmv4/Timmy%20Tammy%20-%20Hating%20On%20Me%20%28feat.%20Wilfred%29.m4a?dl=0',
             album: 'Game Minded',
