@@ -21,8 +21,8 @@ let database = {
         name: 'Ad3sola'
     },
     "AG Blaze": {
-        cant_stop: {
-            name: 'Can\'t Stop (Loving You)',
+        "Can't Stop": {
+            name: 'Can\'t Stop',
             feat: 'Wale Tunes',
             img: 'https://assets.audiomack.com/ag-blaze/7ee1334dc91aa4c8d69fae6d9e868287adcb72f6062d4394f3e84e510a481ccf.jpeg?width=240&height=240&max=true',
             url: 'https://dl.dropboxusercontent.com/s/313v9oy45turedl/AG%20Blaze%20-%20Can%27t%20Stop%20%28Loving%20You%29.m4a?dl=0',
@@ -65,8 +65,8 @@ let database = {
         name: 'Cruizy B',
     },
     "DahVey": {
-        nla_: {
-            name: 'N.L.A (Never Love Again)',
+        "Never Love Again": {
+            name: 'Never Love Again',
             img: 'https://assets.audiomack.com/dahvey123/85181ebf020aa82689ff84d564504ddd21add9aa6a3e32cf50d10008623858ce.jpeg?type=song&width=165&height=165&max=true',
             url: 'https://dl.dropboxusercontent.com/s/opcvz7lxgv8lhyh/DahVey%20-%20N.L.A%20%28Never%20Love%20Again%29%20%28feat.%20Vic%20Smart%20%26%20Emmz%29?dl=0',
             feat: 'Vic Smart & Emmz',
