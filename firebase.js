@@ -116,7 +116,7 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
                 for(artist in data){
                     let artistL = data[artist]
                     for(song in artistL){
-                        let result = `${artist.replaceAll("&", "and")}.${song.replaceAll("=", "/")}.${data[artist][song]}`
+                        let result = `${artist}.${song.replaceAll("=", "/")}.${data[artist][song]}`
                         result = result.split('.').reverse().join('.');
                         array.push(result);
                     }
@@ -139,13 +139,12 @@ document.getElementsByClassName("tab")[1].addEventListener("click", () => {
 })
 document.getElementsByClassName("ctx")[5].addEventListener("click", () => {
     if(!domain.includes(window.location.hostname)){
+        td[4].innerText = "...";
         const dbRef = ref(getDatabase());
         const path = `/${ctxObj.k.name.replaceAll(".", "")}/${ctxObj.x.name.replaceAll("/", "=")}`
         get(child(dbRef, path)).then((snapshot) => {
             if(snapshot.exists()){
                 td[4].innerText = snapshot.val();
-            } else {
-                td[4].innerText = "...";
             }
         }).catch((error) => {
             console.error(error);
@@ -154,13 +153,12 @@ document.getElementsByClassName("ctx")[5].addEventListener("click", () => {
 })
 window.onkeydown = (keyDownEvent) => {
     if(keyDownEvent.key.toLowerCase() == "m" && !keyDownEvent.ctrlKey && !domain.includes(window.location.hostname)){
+        td[4].innerText = "...";
         const dbRef = ref(getDatabase());
         const path = `/${ctxObj.k.name.replaceAll(".", "")}/${ctxObj.x.name.replaceAll("/", "=")}`
         get(child(dbRef, path)).then((snapshot) => {
             if(snapshot.exists()){
                 td[4].innerText = snapshot.val();
-            } else {
-                td[4].innerText = "...";
             }
         }).catch((error) => {
             console.error(error);
