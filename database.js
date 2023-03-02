@@ -151,7 +151,7 @@ let database = {
         },
         name: 'Enny West',
     },
-    "Enny West and Cee Jay": {
+    "Enny West & Cee Jay": {
         "Shooting Star": {
             name: 'Shooting Star',
             img: 'https://assets.audiomack.com/iamennywest/34f3c29e719dde715924c0d037b9a59a4c6ab388c8e8d9fcd9db750be40313f5.jpeg?width=165&height=165&max=true',
@@ -431,7 +431,7 @@ let database = {
             img: 'https://assets.audiomack.com/schway-1/1c98ef35376777c4a29063e583d6536707c4646a4f077357368ed7b555e40c72.jpeg?width=165&height=165&max=true',
         },
     },
-    "Sh3ddy Dickson and Aajaay": {
+    "Sh3ddy Dickson & Aajaay": {
         "Wipe My Tears": {
             img: 'https://assets.audiomack.com/iamsheddydickson/23cc680be0072e0974f80b2ef24635cb9a4ba9065027d90fed524ccfeb5166f0.jpeg?type=song&width=165&height=165&max=true',
             url: 'https://dl.dropboxusercontent.com/s/0dfbw9ah7pecm5c/Sh3ddy%20Dickson%20%26%20Aajaay%20-%20Wipe%20My%20Tears.m4a?dl=0',
