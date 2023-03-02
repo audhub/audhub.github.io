@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <title>AudHub | Music Streaming and Downloads</title>
         <meta name="Author" content="Mikel Edwin">
-        <meta name="Partner" content="REJ Music Charts">
         <meta name="Keywords" content="Charts, Upcoming, Artist, Streaming, Downloads">
         <meta name="Description" content="Stream and Download songs from your favorite Upcoming artists">
         <meta name="robots" content="follow">
@@ -19,9 +18,14 @@
         <script src="/chart.js"></script>
         <script>
             domain = ['localhost', '192.168.43.94'];
+            if(navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)){
+                deviceType = "mobile";
+            } else {
+                deviceType = "desktop";
+            }
             if(domain.includes(window.location.hostname)){
                 chart = chartlist;
-            } else {
+            } else if(deviceType == "desktop"){
                 adScript = document.createElement("script");
                 document.head.appendChild(adScript);
                 adScript.src = '//pl18279549.highcpmrevenuenetwork.com/24/14/ff/2414ffe917463bbbc0ea2a93ef7630a8.js';
