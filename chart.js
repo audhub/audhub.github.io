@@ -2,7 +2,7 @@ chart = {
     "1":"Shegzzy Frosh.911",
     "2":"MEC DECIMAL.Colour Rage",
     "3":"MEC DECIMAL.Eyes Closed",
-    "4":"Rexx.Hellflames",
+    "4":"Rexx.Hellflames/Half Hot Hot Cold",
     "5":"Enny West.Say Your Name",
     "6":"Lieky.More Love",
     "7":"Enny West.My Girl",
