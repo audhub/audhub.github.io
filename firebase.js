@@ -15,7 +15,8 @@ const firebaseConfig = {
     storageBucket: "rtdb-ce214.appspot.com",
     messagingSenderId: "906009944646",
     appId: "1:906009944646:web:8ed0f826d799d9217a2047",
-    measurementId: "G-M0PPHM2MKF"
+    measurementId: "G-M0PPHM2MKF",
+    storageBucket: 'gs://rtdb-ce214.appspot.com',
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -152,7 +153,7 @@ document.getElementsByClassName("ctx")[5].addEventListener("click", () => {
     }
 })
 window.onkeydown = (keyDownEvent) => {
-    if(keyDownEvent.key.toLowerCase() == "m" && !keyDownEvent.ctrlKey && !domain.includes(window.location.hostname)){
+    if(keyDownEvent.key.toLowerCase() == "m" && !keyDownEvent.ctrlKey && !domain.includes(window.location.hostname) && keyDownEvent.target.tagName != "INPUT"){
         td[4].innerText = "...";
         const dbRef = ref(getDatabase());
         const path = `/${ctxObj.k.name.replaceAll(".", "")}/${ctxObj.x.name.replaceAll("/", "=")}`
