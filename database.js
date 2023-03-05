@@ -18,7 +18,21 @@ let database = {
             url: 'https://dl.dropboxusercontent.com/s/yec3yw521j0i3km/Ad3sola%20-%20Where%20You%20Dey?dl=0',
             name: 'Where You Dey',
         },
-        name: 'Ad3sola'
+        name: 'Ad3sola',
+        "Fantapiano": {
+            name: 'Fantapiano',
+            img: 'https://assets.audiomack.com/ad3sola/9c3294da28c74b8fbc36e151af4e31c5bccf8f45c34954f432daa8dd7f3814c6.jpeg?type=song&width=280&height=280&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/gn4m0l31phi24lc/Ad3sola%20-%20Fantapiano.m4a?dl=0',
+        }
+    },
+    "Afeezee": {
+        name: 'Afeezee',
+        "Floor": {
+            name: 'Floor',
+            img: 'https://assets.audiomack.com/afeezee/b7cbeab220674e0931ce3560404d7474edf20894b9c00dc4ef56bc9af4251a8c.jpeg?width=165&height=165&max=true',
+            feat: 'Ad3sola',
+            url: 'https://dl.dropboxusercontent.com/s/nycg4tu81z3t895/Afeezee%20-%20Floor%20%28feat.%20Ad3sola%29.m4a?dl=0',
+        }
     },
     "AG Blaze": {
         "Can't Stop": {
@@ -45,6 +59,12 @@ let database = {
             url: 'https://dl.dropboxusercontent.com/s/htpcev0ryglcd5f/Black%20Danker%20-%20Interceptor.mp3?dl=0',
         },
         name: 'Black Danker',
+        "BAGGS": {
+            name: 'BAGGS',
+            feat: 'MICH\'ANE',
+            img: 'https://assets.audiomack.com/Bdblackdanker/8d334474372f0068685f360fae0af07a5bfac8546bc30fd617fe404213191c06.jpeg?type=song&width=280&height=280&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/okwaiev4wgo6zvk/Black%20Danker%20-%20BAGGS%20%28feat.%20MICH%27ANE%29.m4a?dl=0'
+        }
     },
     "Chukam": {
         "Destiny": {
@@ -64,6 +84,25 @@ let database = {
         },
         name: 'Cruizy B',
     },
+    "Crxnebaby": {
+        name: 'Crxnebaby',
+        "Are You Proud": {
+            name: 'Are You Proud',
+            img: 'https://assets.audiomack.com/crxnebaby/d151a0589b9b7a1b8099cb8bfca248b423034a318c0166fdd5f1311d67c6f7d2.jpeg?type=song&width=280&height=280&max=true',
+            album: 'Mama',
+            feat: 'Spike',
+            url: 'https://dl.dropboxusercontent.com/s/e4tnjf3eov2auww/Crxnebaby%20-%20Are%20You%20Proud.m4a?dl=0',
+        }
+    },
+    "CVRTIE": {
+        name: 'CVRTIE',
+        "3AM": {
+            name: '3AM',
+            album: 'The Brighter Darkside',
+            url: 'https://dl.dropboxusercontent.com/s/t0ef8x73vkdhfv2/CVRITE%20-%203AM.m4a?dl=0',
+            img: 'https://assets.audiomack.com/cvrtie/2600c7aa391cbc4896a0238689ebccd711647dbd16859c6bf2e7114dde89a525.jpeg?type=song&width=280&height=280&max=true',
+        },
+    },
     "DahVey": {
         "Never Love Again": {
             name: 'Never Love Again',
@@ -72,6 +111,14 @@ let database = {
             feat: 'Vic Smart & Emmz',
         },
     name: 'DahVey',
+    },
+    "DANELLO MXL": {
+        name: 'DANELLO MXL',
+        "What Is Love?": {
+            feat: 'RXYAL JAY',
+            img: 'https://assets.audiomack.com/iamdanello/fe30949e2ba4720776f4111b0bf9c69b562f9e586213ef119ec3829f4f280016.jpeg?width=165&height=165&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/cov1zcslqr1n8k6/DANELLO%20MXL%20-%20What%20Is%20Love-%20%28feat.%20RXYAL%20JAY%29.m4a?dl=0',
+        }
     },
     "Da Riddim": {
         name: 'Da Riddim',
@@ -89,6 +136,24 @@ let database = {
             img: 'https://assets.audiomack.com/deszy-dsn/854478e82e61a6e142f91191a827b677d7ccb0210cd8df4c4f927ad873f2f563.png?width=165&height=165&max=true',
             url: 'https://dl.dropboxusercontent.com/s/qb6rbhuvwjhr8zj/Deszy%20Dsn%20-%20Body.m4a?dl=0',
         },
+    },
+    "Emmy Boi Ice": {
+        name: 'Emmy Boi Ice',
+        'Only Me': {
+            name: 'Only Me',
+            img: 'https://assets.audiomack.com/emmyboiice/3d7a5840f541ce5a057169205557df99f2ef0e5cec20774a53533cad7034d402.jpeg?width=165&height=165&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/4veual2jqewxudq/Emmy%20Boi%20Ice%20-%20Only%20Me%20%28feat.%20Yummy%20Cruise%29.m4a?dl=0',
+            feat: 'Mysteria'
+        }
+    },
+    "Emmy Grams": {
+        name: "Emmy Grams",
+        "Thugs": {
+            name: 'Thugs',
+            feat: 'Beloved. E',
+            img: 'https://assets.audiomack.com/emmy-grams0/156653c406126427603d8990345baa3c21e55f50ed482852ede4cc6d81cb06ae.png?width=165&height=165&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/8d0ea4fbqj3quhk/Emmy%20Grams%20-%20Thugs%20%28feat.%20Beloved.%20E%29.m4a?dl=0',
+        }
     },
     "Emmy Lob": {
         "Squad Style": {
@@ -178,6 +243,23 @@ let database = {
         },
         name: 'Jectro'
     },
+    "Jesse Blimz": {
+        name: 'Jesse Blimz',
+        "Show Dem": {
+            img: 'https://assets.audiomack.com/jesse-blimz/1fae3aa078fbea38cbe3d43a538700e5404ec84f821324885c97f3300b131bff.jpeg?type=song&width=280&height=280&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/dea3mfo32256kp7/Jesse%20Blimz%20-%20Show%20Dem.m4a?dl=0',
+            name: 'Show Dem',
+        }
+    },
+    "Joeanyebe": {
+        name: 'Joeanyebe',
+        "No Stress": {
+            name: 'No Stress',
+            feat: 'Yummy Cruise',
+            img: 'https://assets.audiomack.com/joeanyebe/d7468a562f6b74ec860ade1118076174fcd7391f374a884169749e9beb60b872.jpeg?width=165&height=165&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/lyvtstvg984yxem/Joeanyebe%20-%20No%20Stress%20%28feat.%20Yummy%20Cruise%29.m4a?dl=0',
+        }
+    },
     "Kamikaze": {
         name: 'Kamikaze',
         "Open": {
@@ -196,7 +278,23 @@ let database = {
         },
         name: 'Klymax9',
     },
+    "Lexzi On": {
+        name: 'Lexzi On',
+        "Missing Pieces": {
+            name: 'Missing Pieces',
+            Album: 'Missing Pieces',
+            img: 'https://assets.audiomack.com/lexzi-on/0a19cfc0b063fb25b5db88279b8165b04130f2798ff89911c053d3b1d0a74e63.jpeg?type=song&width=280&height=280&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/4efcdu1567wue3x/Lexzi%20On%20-%20Missing%20Pieces.m4a?dl=0',
+        }
+    },
     "Lieky": {
+        "Balance": {
+            name: 'Balance',
+            url: 'https://dl.dropboxusercontent.com/s/sof8mf4pk9km3gg/Lieky%20-%20Balance%20%28feat.%20Mysteria%29.m4a?dl=0',
+            img: 'https://assets.audiomack.com/liekyfanlink-to/39dd7123a6bc7b0b5567b0966227588e6e3565f875cef939b6f462d0a5c58173.jpeg?type=album&width=280&height=280&max=true',
+            feat: 'Mysteria',
+            album: 'Love & Happiness Deluxe Edition'
+        },
         "Come Take": {
             img: 'https://assets.audiomack.com/liekyfanlink-to/78c0951a22d75d5a7646c4666e972573190343fa29bf089eee498df7d0a43937.png?type=album&width=280&height=280&max=true',
             name: 'Come Take',
@@ -250,6 +348,12 @@ let database = {
             feat: 'Big Gold',
         },
         name: 'Lieky',
+        "Natural": {
+            name: 'Natural',
+            img: 'https://assets.audiomack.com/liekyfanlink-to/fb3df16f6dceea5f6999b5b0b4793b156eb5a2f0e14765806f1d610c923356df.jpeg?width=165&height=165&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/dxqdwsav94gianv/Lieky%20-%20Natural.m4a?dl=0',
+            album: 'Love & Happiness Deluxe Edition'
+        }
     },
     "Lithoxx": {
         "Emotional Pains": {
@@ -385,6 +489,15 @@ let database = {
             album: "Little Raven"
         },
     },
+    "Nigga With Chains": {
+        name: 'Nigga With Chains',
+        "Never Lose": {
+            name: 'Never Lose',
+            feat: 'Timmy Tammy',
+            img: 'https://assets.audiomack.com/moitwediketsi/f3ed1bb3e0f3fbd228b07a7c353f77371713a8b2ee449e04e3db80353f8cd8eb.jpeg?width=165&height=165&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/mmeviw6ifftlayc/Nigga%20With%20Chains%20-%20Never%20Lose%20%28feat.%20Yummy%20Cruise%29.m4a?dl=0',
+        }
+    },
     "Neon Mik3y": {
         "Trap": {
             name: 'Trap',
@@ -405,6 +518,22 @@ let database = {
         },
         name: 'Oni Banks',
     },
+    "Prezido YNW": {
+        name: 'Prezido YNW',
+        "F**K Love": {
+            name: 'F**K Love',
+            url: 'https://dl.dropboxusercontent.com/s/btmtv2zc6b1gn32/Prezido%20YNW%20-%20F--K%20Love.m4a?dl=0',
+            img: 'https://assets.audiomack.com/prezidoynw001/45240c703ce410789591f3ec4bba90609829aec6d93e53835df574cd585f1ced.jpeg?type=song&width=165&height=165&max=true',
+            album: 'YUNG NIGGA WRLD'
+        },
+        "Back On The Road": {
+            name: 'Back On The Road',
+            url: 'https://dl.dropboxusercontent.com/s/i5omd3t2l0lno17/Prezido%20YNW%20-%20Back%20On%20The%20Road%20%28feat.%20Lithoxx%20%26%20Vic%20Smart%29.m4a?dl=0',
+            album: 'YUNG NIGGA WRLD',
+            img: 'https://assets.audiomack.com/prezidoynw001/96757a47c5dd02784e24e9e29dc9d4b97e42f2f06cd1f812a4b10ae74d40ea9f.png?type=song&width=165&height=165&max=true',
+            feat: 'Lithoxx & Vic Smart'
+        }
+    },
     "Promzywild": {
         name: 'Promzywild',
         "Fuck Boy": {
@@ -413,6 +542,11 @@ let database = {
             stream: 'https://onerpm.link/152018587464',
             img: 'https://dl.dropboxusercontent.com/s/njz0hpjvk5abfc5/fuck%20boy.jpg?dl=0',
             url: 'https://dl.dropboxusercontent.com/s/t9zjd1mb7i741hl/Promzywild%20-%20Fuck%20Boy%20%28feat.%20Neon%20Mik3y%29.mp3?dl=0',
+        },
+        "Baby": {
+            name: 'Baby',
+            img: 'https://assets.audiomack.com/Promzywild/6dc62b307c94c5f409d8ed68e369423d42f10f7487f30cafb09493f1b0db4e14.jpeg?type=song&width=280&height=280&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/k2927g4gw4u5gx5/Promzywild%20-%20Baby.m4a?dl=0',
         }
     },
     "Rexx!": {
@@ -445,8 +579,24 @@ let database = {
             name: "911",
             url: 'https://dl.dropboxusercontent.com/s/ila8p28r1dppnl7/Shegzzy%20Frosh%20-%20911%20%28feat.%20Inversion%20%26%20Big%20M.A.C%29.m4a?dl=0',
             img: 'https://assets.audiomack.com/shegzzyfrosh1/448a8e22b050db8e0b6d56d96d5bb73919310bd240ac579648960d4d5d4d56e2.jpeg?type=song&width=280&height=280&max=true',
-            album: "Life Style",
+            album: "Lifestyle",
             feat: 'Inversion & Big M.A.C',
+        },
+        "Playboy": {
+            name: 'Playboy',
+            img: 'https://assets.audiomack.com/shegzzyfrosh1/c91f5e1a52a464e0ba50021caa4216a6a76823f70479913430fb217ddc50b3c7.jpeg?type=album&width=280&height=280&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/elt16xvwbmmovlq/Shegzzy%20Frosh%20-%20Playboy%20%28feat.%20Remola%29.m4a?dl=0',
+            album: 'Lifestyle',
+            feat: 'Remola'
+        }
+    },
+    "Tikky Fave": {
+        name: 'Tikky Fave',
+        "Want You": {
+            name: 'Want You',
+            feat: 'Yummy Cruise',
+            img: 'https://assets.audiomack.com/tikky-fave/d51e40255809fdb3a3ed758425ed9c74dbf1828795ddfa0083d0c9edb29afbb6.jpeg?type=album&width=280&height=280&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/lqco0d110wjfhrs/Tikky%20Fave%20-%20Want%20You%20%28feat.%20Yummy%20Cruise%29.m4a?dl=0',
         }
     },
     "Timmy Tammy": {
@@ -497,6 +647,12 @@ let database = {
             img: 'https://assets.audiomack.com/boy_wilfed/fb7d00e1a1c743f7d1ff8aa25121a870c31a537448123e636d79b10826183c14.jpeg?width=165&height=165&max=true',
             feat: 'Hunter Dior',
             url: 'https://dl.dropboxusercontent.com/s/s30z8epb8yl8g4i/W%C3%AFlfr%C3%ABd%20-%20Controller%20%28feat.%20Hunter%20Dior%29.m4a?dl=0',
+        },
+        "Journey On A Run": {
+            name: 'Journey On A Run',
+            album: 'God Over All Things',
+            img: 'https://assets.audiomack.com/boy_wilfed/35289b7306d03c4fc8f9bb5f2386915ac37d349cce1495926c143b63d8a8a99d.jpeg?type=song&width=165&height=165&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/j3gfvncztcvfnvh/Wilfred%20-%20Journey%20On%20A%20Run.m4a?dl=0',
         }
     },
     "Yummy Cruise": {
