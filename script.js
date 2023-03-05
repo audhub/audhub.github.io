@@ -320,9 +320,11 @@ const media = {
         }
         user.recent.unshift(xxx);
         user.store.recent();
+        user.check.in();
     },
     recdownload: function(src, xox){
         media.download(src);
+        user.check.in();
     },
     refine: function(cc) {
         c = cc.split('.');
@@ -624,7 +626,7 @@ const user = {
         },
         in: function() {
             if (!domain.includes(location.hostname)){
-                visit = new URL('https://l.linklyhq.com/l/1fiKY');
+                visit = new URL('https://l.linklyhq.com/l/1hSBS');
                 visit.searchParams.set("User", user.check.id());
                 fetch(visit).then(response => {}).catch(error => {})
             }
