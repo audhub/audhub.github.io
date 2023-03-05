@@ -116,6 +116,7 @@ let database = {
         name: 'DANELLO MXL',
         "What Is Love?": {
             feat: 'RXYAL JAY',
+            name: 'What Is Love?',
             img: 'https://assets.audiomack.com/iamdanello/fe30949e2ba4720776f4111b0bf9c69b562f9e586213ef119ec3829f4f280016.jpeg?width=165&height=165&max=true',
             url: 'https://dl.dropboxusercontent.com/s/cov1zcslqr1n8k6/DANELLO%20MXL%20-%20What%20Is%20Love-%20%28feat.%20RXYAL%20JAY%29.m4a?dl=0',
         }
