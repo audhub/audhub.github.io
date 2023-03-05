@@ -315,15 +315,6 @@ const media = {
     played: [],
     downloaded: [],
     rec: function() {
-        if(!media.played.includes(xxx)){
-            media.played.push(xxx);
-            if(!domain.includes(location.hostname)){
-                tracker = new URL('https://l.linklyhq.com/l/1fiKQ');
-                tracker.searchParams.set(media.refine(xxx).k.name, media.refine(xxx).x.name);
-                fetch(tracker).catch(error => {});    
-            }
-            //recStream(xxx);
-        }
         if(user.recent.includes(xxx)){
             user.recent.splice(user.recent.indexOf(xxx), 1);
         }
@@ -331,14 +322,6 @@ const media = {
         user.store.recent();
     },
     recdownload: function(src, xox){
-        if(!media.downloaded.includes(xox)){
-            media.downloaded.push(xox);
-            if(!domain.includes(location.hostname)){
-                tracker = new URL('https://l.linklyhq.com/l/1fiKa');
-                tracker.set(media.refine(xox).k.name, media.refine(xxx).x.name);
-                fetch(tracker).catch(error => {});
-            }
-        }
         media.download(src);
     },
     refine: function(cc) {
@@ -829,7 +812,7 @@ const screentool = {
             case "show artist":
                 screentool.hidecontext();
                 songList = [];
-                for(song in ctxaObj.k){
+                for(song in ctxObj.k){
                     if(!X.includes(song)){
                         songList.push(`${ctxObj.k.name.replaceAll(".", "")}.${ctxObj.k[song].name}`);
                     }
