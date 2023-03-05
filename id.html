@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <title>AudHub ID</title>
+        <meta charset="utf-8">
+        <link rel="icon" href="favicon.png">
+        <meta name="description" content="View your AudHub ID">
+    </head>
+    <body>
+        <h1></h1>
+        <Script>
+            h1 = document.querySelector("h1");
+            if(!localStorage.getItem("id")){
+                id = new Date().toString().toUpperCase().split('(').shift().replace(/[ +:]/g, '');
+                localStorage.setItem("id", id);
+            }
+            h1.innerText = localStorage.getItem("id");
+        </Script>
+    </body>
+</html>
