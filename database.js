@@ -591,6 +591,14 @@ let database = {
             feat: 'Remola'
         }
     },
+    "Slyxander": {
+        name: 'Slyxander',
+        "Christmas Came Early": {
+            name: 'Christmas Came Early',
+            img: 'https://assets.audiomack.com/slyxander/82f435c2b35eb85d1afe4d3d7f3e7a19baf76d5a2ab17b6a90e5ba795fd9620d.jpeg?type=song&width=280&height=280&max=true',
+            url: 'https://dl.dropboxusercontent.com/s/9828nud0899qis5/Slyxander%20-%20Chritmas%20Came%20Early.m4a?dl=0'
+        }
+    },
     "Tikky Fave": {
         name: 'Tikky Fave',
         "Want You": {
